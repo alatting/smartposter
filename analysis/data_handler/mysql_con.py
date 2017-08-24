@@ -1,5 +1,6 @@
 from settings import DATABASES
-import MySQLdb
+# import MySQLdb
+import pymysql
 
 
 class MysqlClient(object):
@@ -12,7 +13,11 @@ class MysqlClient(object):
         Constructor
         '''
         # 数据库
-        self.__conn = MySQLdb.connect(host=DATABASES["alatting"].get("host"), user=DATABASES["alatting"].get("user"),
+        # self.__conn = MySQLdb.connect(host=DATABASES["alatting"].get("host"), user=DATABASES["alatting"].get("user"),
+        #                               passwd=DATABASES["alatting"].get("password"), db=DATABASES["alatting"].get("db"),
+        #                               charset="utf8")
+
+        self.__conn = pymysql.connect(host=DATABASES["alatting"].get("host"), user=DATABASES["alatting"].get("user"),
                                       passwd=DATABASES["alatting"].get("password"), db=DATABASES["alatting"].get("db"),
                                       charset="utf8")
 
@@ -30,7 +35,7 @@ class MysqlClient(object):
     def reconnection(self):
         try:
             self.__conn.close()
-            self.__conn = MySQLdb.connect(host=DATABASES["alatting"].get("host"),
+            self.__conn = pymysql.connect(host=DATABASES["alatting"].get("host"),
                                           user=DATABASES["alatting"].get("user"),
                                           passwd=DATABASES["alatting"].get("password"),
                                           db=DATABASES["alatting"].get("db"),

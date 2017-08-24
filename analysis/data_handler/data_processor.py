@@ -14,7 +14,7 @@ import json
 from data.data_model import PageView, BrowserView, SystemView, ScreenView, DeviceView, Product, Card, NormalAction, \
     Coupon, ShareAction, WebsiteSummary, WebsiteUserSummary, WebsitePosterSummary, EventAction, SourceView, \
     PagesDetailView
-from settings import address_list,DATABASES
+from settings import address_list, DATABASES
 
 
 class DataProcessor(object):
@@ -24,12 +24,12 @@ class DataProcessor(object):
         '''
         self.__mysql_conn = mysql_client
         self.__current_day = tools.get_current_date('%Y-%m-%d')
-        str_database = "mysql://{user}:{password}@{host}/{db}".format(
-              user=DATABASES["alatting"].get("user","root"),
-              password=DATABASES["alatting"].get("password"),
-              host=DATABASES["alatting"].get("host"),
-              db=DATABASES["alatting"].get("db")
-          )
+        str_database = "mysql+pymysql://{user}:{password}@{host}/{db}".format(
+            user=DATABASES["alatting"].get("user", "root"),
+            password=DATABASES["alatting"].get("password"),
+            host=DATABASES["alatting"].get("host"),
+            db=DATABASES["alatting"].get("db")
+        )
         print(str_database)
         engine = create_engine(str_database,
                                encoding='utf-8', echo=False)
@@ -168,7 +168,6 @@ class DataProcessor(object):
             except Exception as e:
                 self.session.rollback()
 
-
     # 统计浏览器分布数据因子
     def calc_browser_view(self, date=None):
         if date is None:
@@ -197,13 +196,13 @@ class DataProcessor(object):
         for kwargs in data_list:
             num = self.session.query(BrowserView).filter_by(poster_id=kwargs["poster_id"],
                                                             date=kwargs["date"]).update({
-                            BrowserView.ie: kwargs["ie"],
-                            BrowserView.chrome: kwargs["chrome"],
-                            BrowserView.safari: kwargs["safari"],
-                            BrowserView.firefox: kwargs["firefox"],
-                            BrowserView.opera: kwargs["opera"],
-                            BrowserView.other: kwargs["other"]
-                        })
+                BrowserView.ie: kwargs["ie"],
+                BrowserView.chrome: kwargs["chrome"],
+                BrowserView.safari: kwargs["safari"],
+                BrowserView.firefox: kwargs["firefox"],
+                BrowserView.opera: kwargs["opera"],
+                BrowserView.other: kwargs["other"]
+            })
             if num == 0:
                 browser_view = BrowserView(**kwargs)
                 self.session.add(browser_view)
@@ -211,7 +210,6 @@ class DataProcessor(object):
                 self.session.commit()
             except Exception as e:
                 self.session.rollback()
-
 
     # 统计操作系统信息
     def calc_system_view(self, date=None):
@@ -255,7 +253,6 @@ class DataProcessor(object):
                 self.session.commit()
             except Exception as e:
                 self.session.rollback()
-
 
     # 屏幕信息统计
     def calc_screen_view(self, date=None):
@@ -302,7 +299,6 @@ class DataProcessor(object):
             except Exception as e:
                 self.session.rollback()
 
-
     # 设备信息统计
     def calc_device_view(self, date=None):
         if date is None:
@@ -346,7 +342,6 @@ class DataProcessor(object):
                 self.session.commit()
             except Exception as e:
                 self.session.rollback()
-
 
     # 来源信息统计
     def calc_source_view(self, date=None):
@@ -397,7 +392,6 @@ class DataProcessor(object):
             except Exception as e:
                 self.session.rollback()
 
-
     # 页面停留时长
     def calc_time_dist_view(self, date=None):
         # 查询页面停留时间
@@ -446,7 +440,6 @@ class DataProcessor(object):
                 self.session.commit()
             except Exception as e:
                 self.session.rollback()
-
 
     # 产品信息统计
     def calc_poster_product_view(self, date=None):
@@ -502,7 +495,6 @@ class DataProcessor(object):
             except Exception as e:
                 self.session.rollback()
 
-
     # 优惠券统计信息
     def calc_coupon_view(self, date=None):
         # 统计产品view
@@ -556,7 +548,6 @@ class DataProcessor(object):
             except Exception as e:
                 self.session.rollback()
 
-
     # 名片统计信息表
     def calc_card_view(self, date=None):
         # card view
@@ -599,7 +590,6 @@ class DataProcessor(object):
             except Exception as e:
                 self.session.rollback()
 
-
     # 统计常规交互行为
     def calc_normal_action_view(self, date=None):
         # 评论数
@@ -639,7 +629,7 @@ class DataProcessor(object):
                       "GROUP BY DATE_FORMAT(created_at,'%Y-%m-%d'),poster_id".format(date=date)
         df_rate = pd.read_sql(str_sql, self.__mysql_conn)
         df = df_comment
-        if df_comment.empty != True or df_favorite.empty !=True:
+        if df_comment.empty != True or df_favorite.empty != True:
             df = pd.merge(left=df_comment, right=df_favorite, how='outer', on=['poster_id', 'date'])
         if df.empty != True or df_prize.empty != True:
             df = pd.merge(left=df, right=df_prize, how='outer', on=['poster_id', 'date'])
@@ -653,10 +643,10 @@ class DataProcessor(object):
         for kwargs in obj_list:
             num = self.session.query(NormalAction).filter_by(poster_id=kwargs["poster_id"],
                                                              date=kwargs["date"]).update({
-                NormalAction.rate: kwargs.get("rate",0),
-                NormalAction.favorite: kwargs.get("favorite",0),
-                NormalAction.comment: kwargs.get("comment",0),
-                NormalAction.prize: kwargs.get("prize",0),
+                NormalAction.rate: kwargs.get("rate", 0),
+                NormalAction.favorite: kwargs.get("favorite", 0),
+                NormalAction.comment: kwargs.get("comment", 0),
+                NormalAction.prize: kwargs.get("prize", 0),
             })
             if num == 0:
                 sourceViewObj = NormalAction(**kwargs)
@@ -682,7 +672,8 @@ class DataProcessor(object):
 
         # 存数据库，如果存在则更新，否则做插入操作
         for kwargs in eventObjList:
-            num = self.session.query(EventAction).filter_by(poster_id=kwargs["poster_id"],name=kwargs["name"],source=kwargs["source"],type=kwargs["type"],
+            num = self.session.query(EventAction).filter_by(poster_id=kwargs["poster_id"], name=kwargs["name"],
+                                                            source=kwargs["source"], type=kwargs["type"],
                                                             date=kwargs["date"]).update({
                 EventAction.nums: kwargs["nums"]
             })
@@ -694,7 +685,6 @@ class DataProcessor(object):
             except Exception as e:
                 self.session.rollback()
                 continue
-
 
     # 海报分享信息统计
     def calc_share_action_view(self, date=None):
@@ -710,11 +700,11 @@ class DataProcessor(object):
                       " from analysis_sharelist WHERE DATE_FORMAT(created_at,'%Y-%m-%d') = '{date}' GROUP BY DATE_FORMAT(created_at,'%Y-%m-%d'),posterid,channel ".format(
                 date=date)
         df = pd.read_sql(str_sql, self.__mysql_conn, index_col=['poster_id', 'date', 'channel'])
-        data_list  = []
+        data_list = []
         for poster_id in set(df.index.get_level_values(0)):
             for date in set(df.ix[poster_id].index.get_level_values(0)):
                 dfItem = df.ix[poster_id].ix[date]
-                share_dict = {"poster_id":poster_id, "date":date}
+                share_dict = {"poster_id": poster_id, "date": date}
                 for channel in ['weixin', 'weibo', 'qzone', 'facebook', 'twitter', 'other']:
                     try:
                         num = dfItem.ix[channel].num
@@ -740,7 +730,6 @@ class DataProcessor(object):
                 self.session.commit()
             except Exception as e:
                 self.session.rollback()
-
 
     # 站点统计概况
     def calc_website_summary(self):
@@ -805,7 +794,7 @@ class DataProcessor(object):
             df_register = df_register.reindex(date_list).fillna(0)
             # 每一天的用户总数
             user_list = []
-            tools.cal_pre_nums(src=df_register.register.values,tgt=user_list)
+            tools.cal_pre_nums(src=df_register.register.values, tgt=user_list)
             df_register["user"] = user_list  # 每一天的用户总数
             # sign
             str_sql = "SELECT DATE_FORMAT(create_time,'%Y-%m-%d') as 'date',COUNT(DISTINCT user_id) as 'sign' FROM account_signinhistory GROUP BY DATE(create_time);"
@@ -816,9 +805,10 @@ class DataProcessor(object):
             # live_rate
             df["live_rate"] = (df.login / df.user) * 100.0
             # register_rate
-            df["register_rate"] = [0 if (df.register.ix[index] == 0 or df.pv.ix[index] == 0) else (df.register.ix[index] /
-                                                                                                   df.pv.ix[index]) * 100.0
-                                   for index in df.index]
+            df["register_rate"] = [
+                0 if (df.register.ix[index] == 0 or df.pv.ix[index] == 0) else (df.register.ix[index] /
+                                                                                df.pv.ix[index]) * 100.0
+                for index in df.index]
             pd.set_option("precision", 2)
             df = df.reset_index()
             result_list = df.to_json(orient='records')
@@ -843,44 +833,49 @@ class DataProcessor(object):
                     self.session.rollback()
                     continue
         else:
-            str_sql = "SELECT COUNT(id) as 'pv' FROM account_visitorfrequency WHERE DATE_FORMAT(created_at,'%Y-%m-%d') = '{date}'".format(date=date)
+            str_sql = "SELECT COUNT(id) as 'pv' FROM account_visitorfrequency WHERE DATE_FORMAT(created_at,'%Y-%m-%d') = '{date}'".format(
+                date=date)
             df_pv = pd.read_sql(str_sql, self.__mysql_conn)
             pv = df_pv.pv.values[0]
             # login
-            str_sql = "SELECT COUNT(DISTINCT user_id) as 'login' from account_userloginfrequency WHERE DATE_FORMAT(created_at,'%Y-%m-%d') = '{date}'".format(date=date)
+            str_sql = "SELECT COUNT(DISTINCT user_id) as 'login' from account_userloginfrequency WHERE DATE_FORMAT(created_at,'%Y-%m-%d') = '{date}'".format(
+                date=date)
             df_login = pd.read_sql(str_sql, self.__mysql_conn)
             login = df_login.login.values[0]
             # register
-            str_sql = "SELECT COUNT(id) AS 'register' from auth_user WHERE DATE_FORMAT(date_joined,'%Y-%m-%d') = '{date}'".format(date=date)
+            str_sql = "SELECT COUNT(id) AS 'register' from auth_user WHERE DATE_FORMAT(date_joined,'%Y-%m-%d') = '{date}'".format(
+                date=date)
             df_register = pd.read_sql(str_sql, self.__mysql_conn)
             register = df_register.register.values[0]
-            #用戶总数
+            # 用戶总数
             str_sql = "SELECT COUNT(id) AS 'user' FROM auth_user "
-            df = pd.read_sql(str_sql,self.__mysql_conn)
+            df = pd.read_sql(str_sql, self.__mysql_conn)
             user = df.user.values[0]
 
             # sign
-            str_sql = "SELECT COUNT(DISTINCT user_id) as 'sign' FROM account_signinhistory WHERE DATE_FORMAT(create_time,'%Y-%m-%d') = '{date}'".format(date=date)
+            str_sql = "SELECT COUNT(DISTINCT user_id) as 'sign' FROM account_signinhistory WHERE DATE_FORMAT(create_time,'%Y-%m-%d') = '{date}'".format(
+                date=date)
             df_sign = pd.read_sql(str_sql, self.__mysql_conn)
             sign = df_sign.sign.values[0]
             # live_rate
             if user != 0:
                 live_rate = (sign / user) * 100.0
-                register_rate = (register/user) * 100.0
+                register_rate = (register / user) * 100.0
             else:
                 live_rate = 0
                 register_rate = 0
             num = self.session.query(WebsiteUserSummary).filter_by(date=date).update({
-                WebsiteUserSummary.user:user,
-                WebsiteUserSummary.register:register,
-                WebsiteUserSummary.login:login,
-                WebsiteUserSummary.pv:pv,
-                WebsiteUserSummary.sign:sign,
-                WebsiteUserSummary.register_rate:register_rate,
-                WebsiteUserSummary.live_rate:live_rate
+                WebsiteUserSummary.user: int(user),
+                WebsiteUserSummary.register: int(register),
+                WebsiteUserSummary.login: int(login),
+                WebsiteUserSummary.pv: int(pv),
+                WebsiteUserSummary.sign: int(sign),
+                WebsiteUserSummary.register_rate: float(register_rate),
+                WebsiteUserSummary.live_rate: float(live_rate)
             })
             if num == 0:
-                sitUserObj = WebsiteUserSummary(date=date,user=user,register=register,register_rate=register_rate,login=login,live_rate=live_rate,sign=sign,pv=pv)
+                sitUserObj = WebsiteUserSummary(date=date, user=user, register=register, register_rate=register_rate,
+                                                login=login, live_rate=live_rate, sign=sign, pv=pv)
                 self.session.add(sitUserObj)
             try:
                 self.session.commit()
@@ -898,7 +893,7 @@ class DataProcessor(object):
             df_new = pd.read_sql(str_sql, self.__mysql_conn, index_col=['date'])
             df_new = df_new.reindex(date_list).fillna(0)
             poster_list = []
-            tools.cal_pre_nums(src=df_new.new.values,tgt=poster_list)
+            tools.cal_pre_nums(src=df_new.new.values, tgt=poster_list)
             df_new["poster"] = poster_list  # 每一天的海报总数
             # published 已发布的海报
             str_sql = "SELECT DATE_FORMAT(created_at,'%Y-%m-%d') as 'date',COUNT(DISTINCT id) as 'published' " \
@@ -925,13 +920,13 @@ class DataProcessor(object):
             data_list = json.loads(result_list)
             for kwargs in data_list:
                 num = self.session.query(WebsitePosterSummary).filter_by(date=date).update({
-                         WebsitePosterSummary.poster: kwargs["poster"],
-                         WebsitePosterSummary.refused: kwargs["refused"],
-                         WebsitePosterSummary.approved: kwargs["approved"],
-                         WebsitePosterSummary.approve_rate: kwargs["approve_rate"],
-                         WebsitePosterSummary.published: kwargs["published"],
-                         WebsitePosterSummary.publish_rate: kwargs["publish_rate"]
-                    })
+                    WebsitePosterSummary.poster: kwargs["poster"],
+                    WebsitePosterSummary.refused: kwargs["refused"],
+                    WebsitePosterSummary.approved: kwargs["approved"],
+                    WebsitePosterSummary.approve_rate: kwargs["approve_rate"],
+                    WebsitePosterSummary.published: kwargs["published"],
+                    WebsitePosterSummary.publish_rate: kwargs["publish_rate"]
+                })
                 if num == 0:
                     sitPosterObj = WebsitePosterSummary(**kwargs)
                     self.session.add(sitPosterObj)
