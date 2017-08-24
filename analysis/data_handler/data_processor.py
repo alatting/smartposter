@@ -188,7 +188,7 @@ class DataProcessor(object):
                 for browser in ['ie', 'chrome', 'safari', 'firefox', 'opera', 'other']:
                     try:
                         num = browserdf.ix[browser].num
-                        browser_dict[browser] = num
+                        browser_dict[browser] = int(num)
                     except KeyError:
                         browser_dict[browser] = 0
                 data_list.append(browser_dict)
@@ -233,7 +233,7 @@ class DataProcessor(object):
                 for system in ['windows', 'ios', 'android', 'other']:
                     try:
                         num = dfItem.ix[system].num
-                        system_dict[system] = num
+                        system_dict[system] = int(num)
                     except KeyError:
                         system_dict[system] = 0
                 data_list.append(system_dict)
@@ -323,7 +323,7 @@ class DataProcessor(object):
                 for screen in ['pc', 'pad', 'phone']:
                     try:
                         num = screen_df[screen].num
-                        screen_dict[screen] = num
+                        screen_dict[screen] = int(num)
                     except KeyError:
                         screen_dict[screen] = 0
                 data_list.append(screen_dict)
@@ -365,7 +365,7 @@ class DataProcessor(object):
                                'twitter', 'other']:
                     try:
                         num = dfItem.ix[system].num
-                        source_dict[system] = num
+                        source_dict[system] = int(num)
                     except KeyError:
                         source_dict[system] = 0
                 data_list.append(source_dict)
@@ -415,12 +415,12 @@ class DataProcessor(object):
                 for stay in ['l_xs', 'l_sm', 'l_md', 'l_lg']:
                     try:
                         num = dfItem.ix[stay].num
-                        view_num += num
-                        page_detail_dict[stay] = num
+                        view_num += int(num)
+                        page_detail_dict[stay] = int(num)
                     except KeyError:
                         page_detail_dict[stay] = 0
                         view_num += 0
-                page_detail_dict["v_num"] = view_num
+                page_detail_dict["v_num"] = int(view_num)
                 data_list.append(page_detail_dict)
 
         # 存数据库，如果存在则更新，否则做插入操作
@@ -708,7 +708,7 @@ class DataProcessor(object):
                 for channel in ['weixin', 'weibo', 'qzone', 'facebook', 'twitter', 'other']:
                     try:
                         num = dfItem.ix[channel].num
-                        share_dict[channel] = num
+                        share_dict[channel] = int(num)
                     except KeyError:
                         share_dict[channel] = 0
                 data_list.append(share_dict)
@@ -737,39 +737,39 @@ class DataProcessor(object):
         # 皮肤总数skin
         str_sql = "SELECT COUNT(id) as 'skin' from poster_systemskin;"
         df_skin = pd.read_sql(str_sql, self.__mysql_conn)
-        websiteSumaryObj.skin = df_skin.skin.values[0]
+        websiteSumaryObj.skin = int(df_skin.skin.values[0])
         # template
         str_sql = "SELECT COUNT(id) as 'template' FROM alatting_website_template;"
         df_temp = pd.read_sql(str_sql, self.__mysql_conn)
-        websiteSumaryObj.template = df_temp.template.values[0]
+        websiteSumaryObj.template = int(df_temp.template.values[0])
         # poster
         str_sql = "SELECT COUNT(id) as 'poster' FROM alatting_website_poster;"
         df_poster = pd.read_sql(str_sql, self.__mysql_conn)
-        websiteSumaryObj.poster = df_poster.poster.values[0]
+        websiteSumaryObj.poster = int(df_poster.poster.values[0])
         # approve_poster
         str_sql = "SELECT COUNT(id) as 'approve_poster' FROM alatting_website_poster WHERE `status` in ('Checked','Published');"
         df_approve_poster = pd.read_sql(str_sql, self.__mysql_conn)
-        websiteSumaryObj.approve_poster = df_approve_poster.approve_poster.values[0]
+        websiteSumaryObj.approve_poster = int(df_approve_poster.approve_poster.values[0])
         # pv
         str_sql = "SELECT COUNT(id) as 'pv' FROM account_visitorfrequency;"
         df_pv = pd.read_sql(str_sql, self.__mysql_conn)
-        websiteSumaryObj.pv = df_pv.pv.values[0]
+        websiteSumaryObj.pv = int(df_pv.pv.values[0])
         # uv
         str_sql = "SELECT COUNT(DISTINCT visitor_info) as 'uv' FROM account_visitorfrequency;"
         df_uv = pd.read_sql(str_sql, self.__mysql_conn)
-        websiteSumaryObj.uv = df_uv.uv.values[0]
+        websiteSumaryObj.uv = int(df_uv.uv.values[0])
         # ip
         str_sql = "SELECT COUNT(DISTINCT visitor_ip) as 'ip' FROM account_visitorfrequency;"
         df_ip = pd.read_sql(str_sql, self.__mysql_conn)
-        websiteSumaryObj.ip = df_ip.ip.values[0]
+        websiteSumaryObj.ip = int(df_ip.ip.values[0])
         # vv
         str_sql = "SELECT COUNT(id) as 'vv' from account_visitorfrequency;"
         df_vv = pd.read_sql(str_sql, self.__mysql_conn)
-        websiteSumaryObj.vv = df_vv.vv.values[0]
+        websiteSumaryObj.vv = int(df_vv.vv.values[0])
         # user
         str_sql = "SELECT COUNT(id) as 'user' from auth_user;"
         df_user = pd.read_sql(str_sql, self.__mysql_conn)
-        websiteSumaryObj.user = df_user.user.values[0]
+        websiteSumaryObj.user = int(df_user.user.values[0])
         websiteSumaryObj.update_at = tools.get_current_date('%Y-%m-%d %H:%M:%S')
         self.session.merge(websiteSumaryObj)
         self.session.commit()
@@ -816,11 +816,11 @@ class DataProcessor(object):
             # 存数据库，如果存在则更新，否则做插入操作
             for kwargs in data_list:
                 num = self.session.query(WebsiteUserSummary).filter_by(date=kwargs["date"]).update({
-                    WebsiteUserSummary.user: kwargs["user"],
-                    WebsiteUserSummary.register: kwargs["register"],
-                    WebsiteUserSummary.login: kwargs["login"],
-                    WebsiteUserSummary.pv: kwargs["pv"],
-                    WebsiteUserSummary.sign: kwargs["sign"],
+                    WebsiteUserSummary.user: int(kwargs["user"]),
+                    WebsiteUserSummary.register: int(kwargs["register"]),
+                    WebsiteUserSummary.login: int(kwargs["login"]),
+                    WebsiteUserSummary.pv: int(kwargs["pv"]),
+                    WebsiteUserSummary.sign: int(kwargs["sign"]),
                     WebsiteUserSummary.register_rate: kwargs["register_rate"],
                     WebsiteUserSummary.live_rate: kwargs["live_rate"]
                 })
@@ -920,12 +920,12 @@ class DataProcessor(object):
             data_list = json.loads(result_list)
             for kwargs in data_list:
                 num = self.session.query(WebsitePosterSummary).filter_by(date=date).update({
-                    WebsitePosterSummary.poster: kwargs["poster"],
-                    WebsitePosterSummary.refused: kwargs["refused"],
-                    WebsitePosterSummary.approved: kwargs["approved"],
-                    WebsitePosterSummary.approve_rate: kwargs["approve_rate"],
-                    WebsitePosterSummary.published: kwargs["published"],
-                    WebsitePosterSummary.publish_rate: kwargs["publish_rate"]
+                    WebsitePosterSummary.poster: int(kwargs["poster"]),
+                    WebsitePosterSummary.refused: int(kwargs["refused"]),
+                    WebsitePosterSummary.approved: int(kwargs["approved"]),
+                    WebsitePosterSummary.approve_rate: float(kwargs["approve_rate"]),
+                    WebsitePosterSummary.published: int(kwargs["published"]),
+                    WebsitePosterSummary.publish_rate: float(kwargs["publish_rate"])
                 })
                 if num == 0:
                     sitPosterObj = WebsitePosterSummary(**kwargs)
@@ -939,26 +939,26 @@ class DataProcessor(object):
             str_sql = "SELECT COUNT(DISTINCT id) as 'new' from alatting_website_poster WHERE DATE_FORMAT(created_at,'%Y-%m-%d') = '{date}';".format(
                 date=date)
             df_new = pd.read_sql(str_sql, self.__mysql_conn)
-            new = df_new.new.values[0]
+            new = int(df_new.new.values[0])
             # 海报总数
             str_sql = "SELECT COUNT(DISTINCT id) as 'poster' from alatting_website_poster "
             df_new = pd.read_sql(str_sql, self.__mysql_conn)
-            poster = df_new.poster.values[0]
+            poster = int(df_new.poster.values[0])
             # published 已发布的海报
             str_sql = "SELECT COUNT(DISTINCT id) as 'published' from alatting_website_poster WHERE status = 'Published' " \
                       "AND DATE_FORMAT(created_at,'%Y-%m-%d') = '{date}';".format(date=date)
             df_pub = pd.read_sql(str_sql, self.__mysql_conn)
-            published = df_pub.published.values[0]
+            published = int(df_pub.published.values[0])
             # approved 审核通过的海报
             str_sql = "SELECT  COUNT(DISTINCT id) as 'approved' from alatting_website_poster WHERE status IN ('Published','Checked') " \
                       "AND DATE_FORMAT(created_at,'%Y-%m-%d') = '{date}';".format(date=date)
             df_app = pd.read_sql(str_sql, self.__mysql_conn)
-            approved = df_app.approved.values[0]
+            approved = int(df_app.approved.values[0])
             # refused 审核未通过的海报
             str_sql = "SELECT COUNT(DISTINCT id) as 'refused' from alatting_website_poster WHERE status = 'Uncheck' " \
                       "AND DATE_FORMAT(created_at,'%Y-%m-%d') = '{date}';".format(date=date)
             df_ref = pd.read_sql(str_sql, self.__mysql_conn)
-            refused = df_ref.refused.values[0]
+            refused = int(df_ref.refused.values[0])
             # publish_rate
             if poster == 0:
                 publish_rate = 0
@@ -1050,9 +1050,9 @@ if __name__ == '__main__':
     # processor.calc_event_action_view(cur)
     # processor.calc_source_view(cur)
     # processor.calc_time_dist_view(cur)
-    processor.calc_website_user_summary(date=cur)
+    # processor.calc_website_user_summary(date=cur)
     # processor.calc_website_poster_summary()
-    # processor.init_calc_data()
+    processor.init_calc_data()
     # processor.calc_poster_page_view()
     time2 = time.time()
     print(time2 - time1)
