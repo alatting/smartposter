@@ -1122,6 +1122,9 @@ class DataProcessor(object):
         logging.info("16.function calc_website_poster_summary begin execute ...")
         self.calc_website_poster_summary(date)
 
+        logging.info("17.function calc_product_addr begin execute ...")
+        self.calc_product_addr(date)
+
 
 if __name__ == '__main__':
     mysqlClient = MysqlClient()
