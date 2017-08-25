@@ -13,7 +13,7 @@ from sqlalchemy import create_engine
 import json
 from data.data_model import PageView, BrowserView, SystemView, ScreenView, DeviceView, Product, Card, NormalAction, \
     Coupon, ShareAction, WebsiteSummary, WebsiteUserSummary, WebsitePosterSummary, EventAction, SourceView, \
-    PagesDetailView
+    PagesDetailView, ProductAddr
 from settings import address_list, DATABASES
 
 
@@ -882,6 +882,97 @@ class DataProcessor(object):
             except Exception as e:
                 self.session.rollback()
 
+    def calc_product_addr(self, date=None):
+
+        if date is None:
+            str_sql = "SELECT b.post_id as 'poster_id',c.productid as 'product_id', DATE_FORMAT(b.created_at,'%Y-%m-%d') as 'date'," \
+                      "a.province,COUNT(province) as 'num'  from alatting_website_ipaddress a,product_order b, " \
+                      "product_productsnapshot c where a.id = b.ip_id and c.order_id = b.id " \
+                      "GROUP BY b.post_id,c.productid,DATE_FORMAT(b.created_at,'%Y-%m-%d'),a.province ;"
+        else:
+            str_sql = "SELECT b.post_id as 'poster_id',c.productid as 'product_id', DATE_FORMAT(b.created_at,'%Y-%m-%d') as 'date'," \
+                      "a.province,COUNT(province) as 'num'  from alatting_website_ipaddress a,product_order b, " \
+                      "product_productsnapshot c where a.id = b.ip_id and c.order_id = b.id AND DATE_FORMAT(b.created_at,'%Y-%m-%d') = '{date}'" \
+                      "GROUP BY b.post_id,c.productid,DATE_FORMAT(b.created_at,'%Y-%m-%d'),a.province ;".format(
+                date=date)
+        df = pd.read_sql(str_sql, self.__mysql_conn, index_col=['poster_id', 'product_id', 'date', 'province'])
+
+        addr_ret_list = []
+        for poster_id in set(df.index.get_level_values(0)):
+            for product_id in set(df.ix[poster_id].index.get_level_values(0)):
+                for date_index in set(df.ix[poster_id].ix[product_id].index.get_level_values(0)):
+                    addr_ret_dict = {}  # 海报每日地域分布dict
+                    o_addr_dict = {}  # 地域分布dict
+                    df_poster = df.ix[poster_id].ix[product_id].ix[date_index]
+                    for addr in address_list:
+                        try:
+                            num = df_poster.ix[addr].num
+                            o_addr_dict[addr] = int(num)
+                        except KeyError:
+                            o_addr_dict[addr] = 0
+                    addr_ret_dict["poster_id"] = poster_id
+                    addr_ret_dict["product_id"] = product_id
+                    addr_ret_dict["date"] = str(date_index)
+                    addr_ret_dict["o_addr"] = json.dumps(o_addr_dict)
+                    addr_ret_list.append(addr_ret_dict)
+        str_json_addr = json.dumps(addr_ret_list)
+        df_order_addr = pd.read_json(str_json_addr, orient='records', convert_dates=False, dtype=False)
+        if date is None:
+            str_sql = "SELECT DATE_FORMAT(a.created_at, '%Y-%m-%d') as 'date', a.product_id, b.province, " \
+                      "COUNT(province) as 'num', c.poster_id  from analysis_productviewlogs a, alatting_website_ipaddress b," \
+                      "product_product c WHERE a.ip_id = b.id and a.product_id = c.id GROUP BY a.product_id," \
+                      "b.province, DATE_FORMAT(a.created_at, '%Y-%m-%d'), c.poster_id"
+        else:
+            str_sql = "SELECT DATE_FORMAT(a.created_at, '%Y-%m-%d') as 'date', a.product_id, b.province, COUNT(province) as 'num'," \
+                      " c.poster_id  from analysis_productviewlogs a, alatting_website_ipaddress b, " \
+                      "product_product c WHERE a.ip_id = b.id and a.product_id = c.id AND DATE_FORMAT(a.created_at, '%Y-%m-%d') = '{date}'" \
+                      "GROUP BY a.product_id, b.province, DATE_FORMAT(a.created_at, '%Y-%m-%d'), c.poster_id".format(
+                date=date)
+        df = pd.read_sql(str_sql, self.__mysql_conn, index_col=['poster_id', 'product_id', 'date', 'province'])
+        addr_ret_list = []
+        for poster_id in set(df.index.get_level_values(0)):
+            for product_id in set(df.ix[poster_id].index.get_level_values(0)):
+                for date_index in set(df.ix[poster_id].ix[product_id].index.get_level_values(0)):
+                    addr_ret_dict = {}  # 海报每日地域分布dict
+                    v_addr_dict = {}  # 浏览地域分布dict
+                    df_poster = df.ix[poster_id].ix[product_id].ix[date_index]
+                    for addr in address_list:
+                        try:
+                            num = df_poster.ix[addr].num
+                            v_addr_dict[addr] = int(num)
+                        except KeyError:
+                            v_addr_dict[addr] = 0
+                    addr_ret_dict["poster_id"] = int(poster_id)
+                    addr_ret_dict["product_id"] = int(product_id)
+                    addr_ret_dict["date"] = str(date_index)
+                    addr_ret_dict["v_addr"] = json.dumps(v_addr_dict)
+                    addr_ret_list.append(addr_ret_dict)
+        str_json_addr = json.dumps(addr_ret_list)
+        df_view_addr = pd.read_json(str_json_addr, orient='records', convert_dates=False, dtype=False)
+        if df_view_addr.empty is True:
+            return
+        df_ret = pd.merge(left=df_view_addr, right=df_order_addr, how='left', on=['poster_id', 'product_id', 'date'])
+        df_ret = df_ret.fillna('')
+        print(df_ret)
+        addr_ret_list = df_ret.to_dict(orient='records')
+        # addr_ret_list = json.loads(str_ret_json)
+        for kwargs in addr_ret_list:
+            num = self.session.query(ProductAddr).filter_by(date=kwargs["date"],
+                                                            product_id=kwargs["product_id"],
+                                                            poster_id=kwargs["poster_id"]).update({
+
+                ProductAddr.o_addr: kwargs["o_addr"],
+                ProductAddr.v_addr: kwargs["v_addr"]
+            })
+            if num == 0:
+                orderAddrObj = ProductAddr(**kwargs)
+                self.session.add(orderAddrObj)
+            try:
+                self.session.commit()
+            except Exception as e:
+                self.session.rollback()
+                print(e)
+
     # 站点海报资源概况
     def calc_website_poster_summary(self, date=None):
         self.session.commit()
@@ -980,7 +1071,7 @@ class DataProcessor(object):
                 self.session.commit()
             except Exception as e:
                 self.session.rollback()
-                print(e)
+                logging.error(e)
 
     def init_calc_data(self, date=None):
         logging.info("1.function calc_poster_page_view begin execute ...")
