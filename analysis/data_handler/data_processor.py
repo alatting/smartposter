@@ -15,7 +15,7 @@ from data.data_model import PageView, BrowserView, SystemView, ScreenView, Devic
     Coupon, ShareAction, WebsiteSummary, WebsiteUserSummary, WebsitePosterSummary, EventAction, SourceView, \
     PagesDetailView, ProductAddr
 from settings import address_list, DATABASES
-
+import chardet
 
 class DataProcessor(object):
     def __init__(self, mysql_client):
@@ -24,7 +24,7 @@ class DataProcessor(object):
         '''
         self.__mysql_conn = mysql_client
         self.__current_day = tools.get_current_date('%Y-%m-%d')
-        str_database = "mysql+pymysql://{user}:{password}@{host}/{db}".format(
+        str_database = "mysql+pymysql://{user}:{password}@{host}/{db}?charset=utf8".format(
             user=DATABASES["alatting"].get("user", "root"),
             password=DATABASES["alatting"].get("password"),
             host=DATABASES["alatting"].get("host"),
@@ -118,9 +118,14 @@ class DataProcessor(object):
             str_sql = " select a.posterid as 'poster_id', DATE_FORMAT(start_at,'%Y-%m-%d') as 'date',b.province,COUNT(DISTINCT IFNULL(b.province,0)) as 'num'" \
                       " from analysis_period a,alatting_website_ipaddress b where a.ip_id = b.id AND  DATE_FORMAT(start_at,'%Y-%m-%d') = '{date}'" \
                       " GROUP BY a.posterid,DATE_FORMAT(start_at,'%Y-%m-%d'),b.province;".format(date=date)
-        df_addr = pd.read_sql(str_sql, self.__mysql_conn, index_col=['poster_id', 'date', 'province'])
+        # df_addr = pd.read_sql(str_sql, self.__mysql_conn, index_col=['poster_id', 'date', 'province'])
+        df_addr = pd.read_sql(str_sql, self.__mysql_conn)
+        df_addr = df_addr.fillna(0)
+        df_addr = df_addr.set_index(['poster_id', 'date', 'province'], drop=True)
         addr_ret_list = []
         for poster_id in set(df_addr.index.get_level_values(0)):
+            if poster_id == "0":
+                continue
             for date_index in set(df_addr.ix[poster_id].index.get_level_values(0)):
                 addr_ret_dict = {}  # 海报每日地域分布dict
                 addr_dict = {}  # 地域分布dict
@@ -171,11 +176,11 @@ class DataProcessor(object):
     # 统计浏览器分布数据因子
     def calc_browser_view(self, date=None):
         if date is None:
-            str_sql = "select DATE_FORMAT(a.start_at,'%Y-%m-%d') as 'date', a.posterid as 'poster_id', " \
+            str_sql = "select DATE_FORMAT(a.start_at,'%Y-%m-%d') as 'date', IFNULL(a.posterid,0) as 'poster_id', " \
                       " CASE b.browser WHEN 'Mobile Safari' THEN 'safari' WHEN 'Chrome' THEN 'chrome' ELSE 'other' END  as browsertype,COUNT(browser) as 'num' " \
                       " from analysis_period as a, analysis_visitor as b where a.creator_id = b.id group by a.posterid,DATE_FORMAT(a.start_at,'%Y-%m-%d'),browsertype;"
         else:
-            str_sql = "select DATE_FORMAT(a.start_at,'%Y-%m-%d') as 'date', a.posterid as 'poster_id', " \
+            str_sql = "select DATE_FORMAT(a.start_at,'%Y-%m-%d') as 'date', IFNULL(a.posterid,0) as 'poster_id', " \
                       " CASE b.browser WHEN 'Mobile Safari' THEN 'safari' WHEN 'Chrome' THEN 'chrome' ELSE 'other' END  as browsertype,COUNT(browser) as 'num' " \
                       " from analysis_period as a, analysis_visitor as b where a.creator_id = b.id and DATE_FORMAT(a.start_at,'%Y-%m-%d') = '{date}' " \
                       " group by a.posterid,DATE_FORMAT(a.start_at,'%Y-%m-%d'),browsertype;".format(date=date)
@@ -214,12 +219,12 @@ class DataProcessor(object):
     # 统计操作系统信息
     def calc_system_view(self, date=None):
         if date is None:
-            str_sql = "select DATE_FORMAT(a.start_at,'%Y-%m-%d') as 'date', a.posterid as 'poster_id'," \
+            str_sql = "select DATE_FORMAT(a.start_at,'%Y-%m-%d') as 'date', IFNULL(a.posterid,0) as 'poster_id'," \
                       " CASE b.system WHEN 'iOS' THEN 'ios' WHEN 'Android' THEN 'android' ELSE 'other' END as 'system',COUNT(system) as 'num' " \
                       " from analysis_period as a, analysis_visitor as b where a.creator_id = b.id GROUP BY a.posterid,DATE_FORMAT(a.start_at,'%Y-%m-%d'),b.system" \
                       " ORDER BY poster_id,date;"
         else:
-            str_sql = " select DATE_FORMAT(a.start_at,'%Y-%m-%d') as 'date', a.posterid as 'poster_id'," \
+            str_sql = " select DATE_FORMAT(a.start_at,'%Y-%m-%d') as 'date', IFNULL(a.posterid,0) as 'poster_id'," \
                       " CASE b.system WHEN 'iOS' THEN 'ios' WHEN 'Android' THEN 'android' ELSE 'other' END as 'system',COUNT(system) as 'num' " \
                       " from analysis_period as a, analysis_visitor as b where a.creator_id = b.id AND DATE_FORMAT(a.start_at,'%Y-%m-%d') = '{date}' " \
                       " GROUP BY a.posterid,DATE_FORMAT(a.start_at,'%Y-%m-%d'),b.system" \
@@ -257,13 +262,13 @@ class DataProcessor(object):
     # 屏幕信息统计
     def calc_screen_view(self, date=None):
         if date is None:
-            str_sql = "select DATE_FORMAT(a.start_at,'%Y-%m-%d') as 'date', a.posterid as 'poster_id'," \
+            str_sql = "select DATE_FORMAT(a.start_at,'%Y-%m-%d') as 'date', IFNULL(a.posterid,0) as 'poster_id'," \
                       "CASE  WHEN  CAST(SUBSTRING_INDEX(b.screen_size,'*',1) AS UNSIGNED ) < 768 THEN 'sml' " \
                       "WHEN  CAST(SUBSTRING_INDEX(b.screen_size,'*',1) AS UNSIGNED ) >= 768 AND CAST(SUBSTRING_INDEX(b.screen_size,'*',1) AS UNSIGNED ) < 960  THEN 'mid' " \
                       "ELSE 'big' END AS 'screen',COUNT(*) as 'num' from analysis_period as a, analysis_visitor as b " \
                       "where a.creator_id = b.id GROUP BY date,posterid,screen;"
         else:
-            str_sql = "select DATE_FORMAT(a.start_at,'%Y-%m-%d') as 'date', a.posterid as 'poster_id'," \
+            str_sql = "select DATE_FORMAT(a.start_at,'%Y-%m-%d') as 'date', IFNULL(a.posterid,0) as 'poster_id'," \
                       "CASE  WHEN  CAST(SUBSTRING_INDEX(b.screen_size,'*',1) AS UNSIGNED ) < 768 THEN 'sml' " \
                       "WHEN  CAST(SUBSTRING_INDEX(b.screen_size,'*',1) AS UNSIGNED ) >= 768 AND CAST(SUBSTRING_INDEX(b.screen_size,'*',1) AS UNSIGNED ) < 960  THEN 'mid' " \
                       "ELSE 'big' END AS 'screen',COUNT(*) as 'num' from analysis_period as a, analysis_visitor as b " \
@@ -302,13 +307,13 @@ class DataProcessor(object):
     # 设备信息统计
     def calc_device_view(self, date=None):
         if date is None:
-            str_sql = "select DATE_FORMAT(a.start_at,'%Y-%m-%d') as 'date', a.posterid as 'poster_id'," \
+            str_sql = "select DATE_FORMAT(a.start_at,'%Y-%m-%d') as 'date', IFNULL(a.posterid,0) as 'poster_id'," \
                       "CASE  WHEN  CAST(SUBSTRING_INDEX(b.screen_size,'*',1) AS UNSIGNED ) < 768 THEN 'phone' " \
                       "WHEN  CAST(SUBSTRING_INDEX(b.screen_size,'*',1) AS UNSIGNED ) >= 768 AND CAST(SUBSTRING_INDEX(b.screen_size,'*',1) AS UNSIGNED ) < 960  THEN 'pad' " \
                       "ELSE 'pc' END AS 'device',COUNT(*) as 'num' from analysis_period as a, analysis_visitor as b " \
                       "where a.creator_id = b.id GROUP BY date,posterid,device;"
         else:
-            str_sql = "select DATE_FORMAT(a.start_at,'%Y-%m-%d') as 'date', a.posterid as 'poster_id'," \
+            str_sql = "select DATE_FORMAT(a.start_at,'%Y-%m-%d') as 'date', IFNULL(a.posterid,0) as 'poster_id'," \
                       "CASE  WHEN  CAST(SUBSTRING_INDEX(b.screen_size,'*',1) AS UNSIGNED ) < 768 THEN 'phone' " \
                       "WHEN  CAST(SUBSTRING_INDEX(b.screen_size,'*',1) AS UNSIGNED ) >= 768 AND CAST(SUBSTRING_INDEX(b.screen_size,'*',1) AS UNSIGNED ) < 960  THEN 'pad' " \
                       "ELSE 'pc' END AS 'device',COUNT(*) as 'num' from analysis_period as a, analysis_visitor as b " \
@@ -345,7 +350,7 @@ class DataProcessor(object):
 
     # 来源信息统计
     def calc_source_view(self, date=None):
-        str_sql = " SELECT DATE_FORMAT(a.created_at,'%Y-%m-%d') as 'date',b.posterid as 'poster_id', CASE WHEN a.from_host LIKE '%baidu%' THEN 'baidu'" \
+        str_sql = " SELECT DATE_FORMAT(a.created_at,'%Y-%m-%d') as 'date',IFNULL(b.posterid,0) as 'poster_id', CASE WHEN a.from_host LIKE '%baidu%' THEN 'baidu'" \
                   " WHEN a.from_host LIKE '%soso%' THEN 'soso' WHEN a.from_host LIKE '%google%' THEN 'google' WHEN a.from_host LIKE '%biying%' THEN 'biying'" \
                   " WHEN a.from_host LIKE '%sogou%' THEN 'sogou' WHEN a.from_host LIKE '%wechat%' THEN 'weixin' WHEN a.from_host LIKE '%weibo%' THEN 'weibo' " \
                   " WHEN a.from_host LIKE '%qzone%' THEN 'qzone' WHEN a.from_host LIKE '%facebook%' THEN 'facebook' " \
@@ -396,11 +401,11 @@ class DataProcessor(object):
     def calc_time_dist_view(self, date=None):
         # 查询页面停留时间
         if date is None:
-            str_sql = "SELECT posterid AS 'poster_id', CASE WHEN during_time < 60 THEN 'l_xs' WHEN during_time >= 60 and during_time < 240 THEN 'l_sm'" \
+            str_sql = "SELECT IFNULL(posterid,0) AS 'poster_id', CASE WHEN during_time < 60 THEN 'l_xs' WHEN during_time >= 60 and during_time < 240 THEN 'l_sm'" \
                       "WHEN during_time >= 240 and during_time <300 THEN 'l_md' ELSE  'l_lg' END as 'stay',DATE_FORMAT(start_at,'%Y-%m-%d') as 'date'," \
                       "COUNT(*) as 'num' from analysis_period GROUP BY posterid,stay,DATE_FORMAT(start_at,'%Y-%m-%d') ORDER BY posterid, date;"
         else:
-            str_sql = "SELECT posterid AS 'poster_id', CASE WHEN during_time < 60 THEN 'l_xs' WHEN during_time >= 60 and during_time < 240 THEN 'l_sm'" \
+            str_sql = "SELECT IFNULL(posterid,0) AS 'poster_id', CASE WHEN during_time < 60 THEN 'l_xs' WHEN during_time >= 60 and during_time < 240 THEN 'l_sm'" \
                       "WHEN during_time >= 240 and during_time <300 THEN 'l_md' ELSE  'l_lg' END as 'stay',DATE_FORMAT(start_at,'%Y-%m-%d') as 'date'," \
                       "COUNT(*) as 'num' from analysis_period WHERE DATE_FORMAT(start_at,'%Y-%m-%d') = '{date}' GROUP BY posterid,stay,DATE_FORMAT(start_at,'%Y-%m-%d') " \
                       "ORDER BY posterid, date;".format(date=date)
@@ -445,30 +450,30 @@ class DataProcessor(object):
     def calc_poster_product_view(self, date=None):
         # 统计产品view
         if date is None:
-            str_sql = "SELECT DATE_FORMAT(a.created_at,'%Y-%m-%d') as 'date', a.product_id ,b.poster_id,COUNT(a.product_id) as 'view'" \
+            str_sql = "SELECT DATE_FORMAT(a.created_at,'%Y-%m-%d') as 'date', a.product_id ,IFNULL(b.poster_id,0) as 'poster_id',COUNT(a.product_id) as 'view'" \
                       " from analysis_productviewlogs as a, product_product as b WHERE a.product_id = b.id GROUP BY date,poster_id,product_id;"
         else:
-            str_sql = "SELECT DATE_FORMAT(a.created_at,'%Y-%m-%d') as 'date', a.product_id ,b.poster_id,COUNT(a.product_id) as 'view'" \
+            str_sql = "SELECT DATE_FORMAT(a.created_at,'%Y-%m-%d') as 'date', a.product_id ,IFNULL(b.poster_id,0) as 'poster_id',COUNT(a.product_id) as 'view'" \
                       " from analysis_productviewlogs as a, product_product as b WHERE a.product_id = b.id and DATE_FORMAT(a.created_at,'%Y-%m-%d') = '{date}' " \
                       "GROUP BY date,poster_id,product_id;".format(date=date)
         # df_view1 = pd.read_sql(str_sql, self.__mysql_conn, index_col=['poster_id', 'product_id', 'date'])
         df_view = pd.read_sql(str_sql, self.__mysql_conn)
         # 统计产品加入购物车的数目
         if date is None:
-            str_sql = "SELECT DATE_FORMAT(a.created_at,'%Y-%m-%d') as 'date', a.product_id ,b.poster_id,COUNT(a.product_id) as 'cart' " \
+            str_sql = "SELECT DATE_FORMAT(a.created_at,'%Y-%m-%d') as 'date', a.product_id ,IFNULL(b.poster_id,0) as 'poster_id',COUNT(a.product_id) as 'cart' " \
                       "from product_cart as a, product_product as b where a.product_id = b.id GROUP BY date,poster_id,product_id;"
         else:
-            str_sql = "SELECT DATE_FORMAT(a.created_at,'%Y-%m-%d') as 'date', a.product_id ,b.poster_id,COUNT(a.product_id) as 'cart' " \
+            str_sql = "SELECT DATE_FORMAT(a.created_at,'%Y-%m-%d') as 'date', a.product_id ,IFNULL(b.poster_id,0) as 'poster_id',COUNT(a.product_id) as 'cart' " \
                       "from product_cart as a, product_product as b where a.product_id = b.id AND DATE_FORMAT(a.created_at,'%Y-%m-%d') = '{date}' " \
                       "GROUP BY date,poster_id,product_id;".format(date=date)
         # df_cart1 = pd.read_sql(str_sql, self.__mysql_conn, index_col=['poster_id', 'product_id', 'date'])
         df_cart = pd.read_sql(str_sql, self.__mysql_conn)
         # 统计产品订单数目
         if date is None:
-            str_sql = "select CAST(b.post_id AS UNSIGNED) as 'poster_id',DATE_FORMAT(b.created_at,'%Y-%m-%d') as 'date',a.productid as 'product_id'," \
+            str_sql = "select CAST(IFNULL(b.post_id,0) AS UNSIGNED) as 'poster_id',DATE_FORMAT(b.created_at,'%Y-%m-%d') as 'date',a.productid as 'product_id'," \
                       "COUNT(a.productid) as 'order' from product_productsnapshot as a, product_order as b where a.order_id = b.id GROUP BY b.post_id,date,productid;"
         else:
-            str_sql = "select CAST(b.post_id AS UNSIGNED) as 'poster_id',DATE_FORMAT(b.created_at,'%Y-%m-%d') as 'date',a.productid as 'product_id'," \
+            str_sql = "select CAST(IFNULL(b.post_id,0) AS UNSIGNED) as 'poster_id',DATE_FORMAT(b.created_at,'%Y-%m-%d') as 'date',a.productid as 'product_id'," \
                       "COUNT(a.productid) as 'order' from product_productsnapshot as a, product_order as b where a.order_id = b.id AND DATE_FORMAT(b.created_at,'%Y-%m-%d') = '{date}' " \
                       "GROUP BY b.post_id,date,productid;".format(date=date)
         df_order = pd.read_sql(str_sql, self.__mysql_conn)
@@ -500,28 +505,28 @@ class DataProcessor(object):
         # 统计产品view
         # coupon view
         if date is None:
-            str_sql = "select DATE_FORMAT(a.created_at,'%Y-%m-%d') as 'date', b.poster_id,a.coupon_id,COUNT(a.coupon_id) as 'view' " \
+            str_sql = "select DATE_FORMAT(a.created_at,'%Y-%m-%d') as 'date', IFNULL(b.poster_id,0) as 'poster_id',a.coupon_id,COUNT(a.coupon_id) as 'view' " \
                       "from analysis_couponviewlogs as a,coupon_coupon as b where a.coupon_id = b.id GROUP BY poster_id,a.coupon_id,date;"
         else:
-            str_sql = "select DATE_FORMAT(a.created_at,'%Y-%m-%d') as 'date', b.poster_id,a.coupon_id,COUNT(a.coupon_id) as 'view' " \
+            str_sql = "select DATE_FORMAT(a.created_at,'%Y-%m-%d') as 'date', IFNULL(b.poster_id,0) as 'poster_id',a.coupon_id,COUNT(a.coupon_id) as 'view' " \
                       "from analysis_couponviewlogs as a,coupon_coupon as b where a.coupon_id = b.id AND  DATE_FORMAT(a.created_at,'%Y-%m-%d') = '{date}'" \
                       " GROUP BY poster_id,a.coupon_id,date;".format(date=date)
         df_view = pd.read_sql(str_sql, self.__mysql_conn)
         # coupon fetch
         if date is None:
-            str_sql = "SELECT DATE_FORMAT(a.created_at,'%Y-%m-%d') as 'date', b.poster_id,a.coupon_id,COUNT(a.coupon_id) as 'fetch' " \
+            str_sql = "SELECT DATE_FORMAT(a.created_at,'%Y-%m-%d') as 'date', IFNULL(b.poster_id,0) as 'poster_id',a.coupon_id,COUNT(a.coupon_id) as 'fetch' " \
                       "FROM coupon_codes as a, coupon_coupon as b where a.coupon_id = b.id GROUP BY poster_id,a.coupon_id,date;"
         else:
-            str_sql = "SELECT DATE_FORMAT(a.created_at,'%Y-%m-%d') as 'date', b.poster_id,a.coupon_id,COUNT(a.coupon_id) as 'fetch' " \
+            str_sql = "SELECT DATE_FORMAT(a.created_at,'%Y-%m-%d') as 'date', IFNULL(b.poster_id,0) as 'poster_id',a.coupon_id,COUNT(a.coupon_id) as 'fetch' " \
                       "FROM coupon_codes as a, coupon_coupon as b where a.coupon_id = b.id AND DATE_FORMAT(a.created_at,'%Y-%m-%d') = '{date}'" \
                       " GROUP BY poster_id,a.coupon_id,date;".format(date=date)
         df_fetch = pd.read_sql(str_sql, self.__mysql_conn)
         # coupon use
         if date is None:
-            str_sql = "SELECT DATE_FORMAT(a.created_at,'%Y-%m-%d') as 'date', b.poster_id,a.coupon_id,COUNT(a.coupon_id) as 'use' " \
+            str_sql = "SELECT DATE_FORMAT(a.created_at,'%Y-%m-%d') as 'date', IFNULL(b.poster_id,0) as 'poster_id',a.coupon_id,COUNT(a.coupon_id) as 'use' " \
                       "FROM coupon_codes as a, coupon_coupon as b where a.is_used = 1 and a.coupon_id = b.id GROUP BY poster_id,a.coupon_id,date;"
         else:
-            str_sql = "SELECT DATE_FORMAT(a.created_at,'%Y-%m-%d') as 'date', b.poster_id,a.coupon_id,COUNT(a.coupon_id) as 'use' " \
+            str_sql = "SELECT DATE_FORMAT(a.created_at,'%Y-%m-%d') as 'date', IFNULL(b.poster_id,0) as 'poster_id',a.coupon_id,COUNT(a.coupon_id) as 'use' " \
                       "from coupon_codes as a, coupon_coupon as b where DATE_FORMAT(a.created_at,'%Y-%m-%d')= '{date}' " \
                       "AND a.is_used = 1 and a.coupon_id = b.id GROUP BY poster_id,a.coupon_id,date;".format(date=date)
         df_use = pd.read_sql(str_sql, self.__mysql_conn)
@@ -552,19 +557,19 @@ class DataProcessor(object):
     def calc_card_view(self, date=None):
         # card view
         if date is None:
-            str_sql = "select DATE_FORMAT(a.created_at,'%Y-%m-%d') as 'date', b.poster_id,a.card_id,COUNT(a.card_id) as 'view' " \
+            str_sql = "select DATE_FORMAT(a.created_at,'%Y-%m-%d') as 'date', IFNULL(b.poster_id,0) as 'poster_id',a.card_id,COUNT(a.card_id) as 'view' " \
                       "from analysis_cardviewlogs as a,card_cards as b where a.card_id = b.id GROUP BY poster_id,a.card_id,date;"
         else:
-            str_sql = "select DATE_FORMAT(a.created_at,'%Y-%m-%d') as 'date', b.poster_id,a.card_id,COUNT(a.card_id) as 'view' " \
+            str_sql = "select DATE_FORMAT(a.created_at,'%Y-%m-%d') as 'date', IFNULL(b.poster_id,0) as 'poster_id',a.card_id,COUNT(a.card_id) as 'view' " \
                       "from analysis_cardviewlogs as a,card_cards as b where a.card_id = b.id AND DATE_FORMAT(a.created_at,'%Y-%m-%d') = '{date}'" \
                       " GROUP BY poster_id,a.card_id,date;".format(date=date)
         df_vew = pd.read_sql(str_sql, self.__mysql_conn)
         # card favorite
         if date is None:
-            str_sql = "SELECT DATE_FORMAT(a.created_at,'%Y-%m-%d') as 'date',b.poster_id,a.cards_id as 'card_id',COUNT(a.cards_id) as 'favorite' " \
+            str_sql = "SELECT DATE_FORMAT(a.created_at,'%Y-%m-%d') as 'date',IFNULL(b.poster_id,0) as 'poster_id',a.cards_id as 'card_id',COUNT(a.cards_id) as 'favorite' " \
                       "from card_cardbookmark as a,card_cards as b where a.cards_id = b.id GROUP BY poster_id,a.cards_id,date;"
         else:
-            str_sql = "SELECT DATE_FORMAT(a.created_at,'%Y-%m-%d') as 'date',b.poster_id,a.cards_id as 'card_id',COUNT(a.cards_id) as 'favorite' " \
+            str_sql = "SELECT DATE_FORMAT(a.created_at,'%Y-%m-%d') as 'date',IFNULL(b.poster_id,0) as 'poster_id',a.cards_id as 'card_id',COUNT(a.cards_id) as 'favorite' " \
                       "from card_cardbookmark as a,card_cards as b where a.cards_id = b.id AND  DATE_FORMAT(a.created_at,'%Y-%m-%d') = '{date}' " \
                       "GROUP BY poster_id,a.cards_id,date;".format(date=date)
         df_favorite = pd.read_sql(str_sql, self.__mysql_conn)
@@ -594,37 +599,37 @@ class DataProcessor(object):
     def calc_normal_action_view(self, date=None):
         # 评论数
         if date is None:
-            str_sql = "SELECT poster_id,DATE_FORMAT(created_at,'%Y-%m-%d') as 'date',COUNT(*) as 'comment' " \
+            str_sql = "SELECT IFNULL(poster_id,0) as 'poster_id',DATE_FORMAT(created_at,'%Y-%m-%d') as 'date',COUNT(*) as 'comment' " \
                       "from alatting_website_comment GROUP BY DATE_FORMAT(created_at,'%Y-%m-%d'),poster_id"
         else:
-            str_sql = "SELECT poster_id,DATE_FORMAT(created_at,'%Y-%m-%d') as 'date',COUNT(*) as 'comment' " \
+            str_sql = "SELECT IFNULL(poster_id,0) as 'poster_id',DATE_FORMAT(created_at,'%Y-%m-%d') as 'date',COUNT(*) as 'comment' " \
                       "from alatting_website_comment WHERE DATE_FORMAT(created_at,'%Y-%m-%d')  = '{date}' " \
                       "GROUP BY DATE_FORMAT(created_at,'%Y-%m-%d'),poster_id".format(date=date)
         df_comment = pd.read_sql(str_sql, self.__mysql_conn)
         # 收藏数
         if date is None:
-            str_sql = "select poster_id,DATE_FORMAT(created_at,'%Y-%m-%d') as 'date',COUNT(*) as 'favorite' " \
+            str_sql = "select IFNULL(poster_id,0) as 'poster_id',DATE_FORMAT(created_at,'%Y-%m-%d') as 'date',COUNT(*) as 'favorite' " \
                       "from alatting_website_posterfavorites GROUP BY DATE_FORMAT(created_at,'%Y-%m-%d'),poster_id;"
         else:
-            str_sql = "select poster_id,DATE_FORMAT(created_at,'%Y-%m-%d') as 'date',COUNT(*) as 'favorite' " \
+            str_sql = "select IFNULL(poster_id,0) as 'poster_id',DATE_FORMAT(created_at,'%Y-%m-%d') as 'date',COUNT(*) as 'favorite' " \
                       "from alatting_website_posterfavorites WHERE DATE_FORMAT(created_at,'%Y-%m-%d')  = '{date}' " \
                       "GROUP BY DATE_FORMAT(created_at,'%Y-%m-%d'),poster_id;".format(date=date)
         df_favorite = pd.read_sql(str_sql, self.__mysql_conn)
         # 点赞数
         if date is None:
-            str_sql = "SELECT poster_id,DATE_FORMAT(created_at,'%Y-%m-%d') as 'date',COUNT(*) as 'prize' " \
+            str_sql = "SELECT IFNULL(poster_id,0) as 'poster_id',DATE_FORMAT(created_at,'%Y-%m-%d') as 'date',COUNT(*) as 'prize' " \
                       "FROM alatting_website_posterfun GROUP BY DATE_FORMAT(created_at,'%Y-%m-%d'),poster_id;"
         else:
-            str_sql = "SELECT poster_id,DATE_FORMAT(created_at,'%Y-%m-%d') as 'date',COUNT(*) as 'prize' " \
+            str_sql = "SELECT IFNULL(poster_id,0) as 'poster_id',DATE_FORMAT(created_at,'%Y-%m-%d') as 'date',COUNT(*) as 'prize' " \
                       "FROM alatting_website_posterfun WHERE DATE_FORMAT(created_at,'%Y-%m-%d') = '{date}' " \
                       "GROUP BY DATE_FORMAT(created_at,'%Y-%m-%d'),poster_id;".format(date=date)
         df_prize = pd.read_sql(str_sql, self.__mysql_conn)
         # 评分数
         if date is None:
-            str_sql = "select poster_id,DATE_FORMAT(created_at,'%Y-%m-%d') as 'date',COUNT(*) as 'rate' " \
+            str_sql = "select IFNULL(poster_id,0) as 'poster_id',DATE_FORMAT(created_at,'%Y-%m-%d') as 'date',COUNT(*) as 'rate' " \
                       "from alatting_website_rating GROUP BY DATE_FORMAT(created_at,'%Y-%m-%d'),poster_id"
         else:
-            str_sql = "select poster_id,DATE_FORMAT(created_at,'%Y-%m-%d') as 'date',COUNT(*) as 'rate' " \
+            str_sql = "select IFNULL(poster_id,0) as 'poster_id',DATE_FORMAT(created_at,'%Y-%m-%d') as 'date',COUNT(*) as 'rate' " \
                       "from alatting_website_rating WHERE DATE_FORMAT(created_at,'%Y-%m-%d') = '{date}' " \
                       "GROUP BY DATE_FORMAT(created_at,'%Y-%m-%d'),poster_id".format(date=date)
         df_rate = pd.read_sql(str_sql, self.__mysql_conn)
@@ -660,22 +665,22 @@ class DataProcessor(object):
     # 海报事件统计
     def calc_event_action_view(self, date=None):
         if date is None:
-            str_sql = "select DATE_FORMAT(created_at,'%Y-%m-%d') as 'date',poster_id,name,source,stype as 'type',COUNT(source) as 'nums' " \
+            str_sql = "select DATE_FORMAT(created_at,'%Y-%m-%d') as 'date',IFNULL(poster_id,0) as 'poster_id',name,source,stype as 'type',COUNT(source) as 'nums' " \
                       "from analysis_sourcelog GROUP BY DATE(created_at),poster_id,source,name;"
         else:
-            str_sql = "select DATE_FORMAT(created_at,'%Y-%m-%d') as 'date',poster_id,name,source,stype as 'type',COUNT(source) as 'nums' " \
+            str_sql = "select DATE_FORMAT(created_at,'%Y-%m-%d') as 'date',IFNULL(poster_id,0) as 'poster_id',name,source,stype as 'type',COUNT(source) as 'nums' " \
                       "from analysis_sourcelog WHERE DATE_FORMAT(created_at,'%Y-%m-%d') = '{date}' " \
                       "GROUP BY DATE(created_at),poster_id,source,name;".format(date=date)
         df = pd.read_sql(str_sql, self.__mysql_conn)
-        ret_json = df.to_json(orient="records")
-        eventObjList = json.loads(ret_json)
-
+        # ret_json = df.to_json(orient="records",force_ascii=False)
+        # eventObjList = json.loads(ret_json)
+        eventObjList = df.to_dict(orient="records")
         # 存数据库，如果存在则更新，否则做插入操作
         for kwargs in eventObjList:
             num = self.session.query(EventAction).filter_by(poster_id=kwargs["poster_id"], name=kwargs["name"],
                                                             source=kwargs["source"], type=kwargs["type"],
                                                             date=kwargs["date"]).update({
-                EventAction.nums: kwargs["nums"]
+                EventAction.nums: int(kwargs["nums"])
             })
             if num == 0:
                 sourceViewObj = EventAction(**kwargs)
@@ -689,12 +694,12 @@ class DataProcessor(object):
     # 海报分享信息统计
     def calc_share_action_view(self, date=None):
         if date is None:
-            str_sql = "SELECT posterid as 'poster_id',CASE WHEN to_s LIKE '%qzone%' OR to_s LIKE '%qq%' THEN 'qzone' WHEN to_s LIKE '%weibo%' THEN 'weibo' " \
+            str_sql = "SELECT IFNULL(posterid,0) as 'poster_id',CASE WHEN to_s LIKE '%qzone%' OR to_s LIKE '%qq%' THEN 'qzone' WHEN to_s LIKE '%weibo%' THEN 'weibo' " \
                       " WHEN to_s LIKE '%wechat%' OR to_s LIKE '%wx%' THEN 'weixin' WHEN to_s LIKE '%facebook%' THEN 'facebook' " \
                       " WHEN to_s LIKE '%twitter%' THEN 'twitter' ELSE 'other' END as 'channel',DATE_FORMAT(created_at,'%Y-%m-%d') as 'date',COUNT(*) as 'num' " \
                       " from analysis_sharelist GROUP BY DATE_FORMAT(created_at,'%Y-%m-%d'),posterid,channel "
         else:
-            str_sql = "SELECT posterid as 'poster_id',CASE WHEN to_s LIKE '%qzone%' OR to_s LIKE '%qq%' THEN 'qzone' WHEN to_s LIKE '%weibo%' THEN 'weibo' " \
+            str_sql = "SELECT IFNULL(posterid,0) as 'poster_id',CASE WHEN to_s LIKE '%qzone%' OR to_s LIKE '%qq%' THEN 'qzone' WHEN to_s LIKE '%weibo%' THEN 'weibo' " \
                       " WHEN to_s LIKE '%wechat%' OR to_s LIKE '%wx%' THEN 'weixin' WHEN to_s LIKE '%facebook%' THEN 'facebook' " \
                       " WHEN to_s LIKE '%twitter%' THEN 'twitter' ELSE 'other' END as 'channel',DATE_FORMAT(created_at,'%Y-%m-%d') as 'date',COUNT(*) as 'num' " \
                       " from analysis_sharelist WHERE DATE_FORMAT(created_at,'%Y-%m-%d') = '{date}' GROUP BY DATE_FORMAT(created_at,'%Y-%m-%d'),posterid,channel ".format(
@@ -885,12 +890,12 @@ class DataProcessor(object):
     def calc_product_addr(self, date=None):
 
         if date is None:
-            str_sql = "SELECT b.post_id as 'poster_id',c.productid as 'product_id', DATE_FORMAT(b.created_at,'%Y-%m-%d') as 'date'," \
+            str_sql = "SELECT IFNULL(b.post_id,0) as 'poster_id',c.productid as 'product_id', DATE_FORMAT(b.created_at,'%Y-%m-%d') as 'date'," \
                       "a.province,COUNT(province) as 'num'  from alatting_website_ipaddress a,product_order b, " \
                       "product_productsnapshot c where a.id = b.ip_id and c.order_id = b.id " \
                       "GROUP BY b.post_id,c.productid,DATE_FORMAT(b.created_at,'%Y-%m-%d'),a.province ;"
         else:
-            str_sql = "SELECT b.post_id as 'poster_id',c.productid as 'product_id', DATE_FORMAT(b.created_at,'%Y-%m-%d') as 'date'," \
+            str_sql = "SELECT IFNULL(b.post_id,0) as 'poster_id',c.productid as 'product_id', DATE_FORMAT(b.created_at,'%Y-%m-%d') as 'date'," \
                       "a.province,COUNT(province) as 'num'  from alatting_website_ipaddress a,product_order b, " \
                       "product_productsnapshot c where a.id = b.ip_id and c.order_id = b.id AND DATE_FORMAT(b.created_at,'%Y-%m-%d') = '{date}'" \
                       "GROUP BY b.post_id,c.productid,DATE_FORMAT(b.created_at,'%Y-%m-%d'),a.province ;".format(
@@ -917,14 +922,16 @@ class DataProcessor(object):
                     addr_ret_list.append(addr_ret_dict)
         str_json_addr = json.dumps(addr_ret_list)
         df_order_addr = pd.read_json(str_json_addr, orient='records', convert_dates=False, dtype=False)
+
+        #统计浏览地域分布
         if date is None:
             str_sql = "SELECT DATE_FORMAT(a.created_at, '%Y-%m-%d') as 'date', a.product_id, b.province, " \
-                      "COUNT(province) as 'num', c.poster_id  from analysis_productviewlogs a, alatting_website_ipaddress b," \
+                      "COUNT(province) as 'num', IFNULL(c.poster_id,0) as 'poster_id'  from analysis_productviewlogs a, alatting_website_ipaddress b," \
                       "product_product c WHERE a.ip_id = b.id and a.product_id = c.id GROUP BY a.product_id," \
                       "b.province, DATE_FORMAT(a.created_at, '%Y-%m-%d'), c.poster_id"
         else:
             str_sql = "SELECT DATE_FORMAT(a.created_at, '%Y-%m-%d') as 'date', a.product_id, b.province, COUNT(province) as 'num'," \
-                      " c.poster_id  from analysis_productviewlogs a, alatting_website_ipaddress b, " \
+                      " IFNULL(c.poster_id,0) as 'poster_id'  from analysis_productviewlogs a, alatting_website_ipaddress b, " \
                       "product_product c WHERE a.ip_id = b.id and a.product_id = c.id AND DATE_FORMAT(a.created_at, '%Y-%m-%d') = '{date}'" \
                       "GROUP BY a.product_id, b.province, DATE_FORMAT(a.created_at, '%Y-%m-%d'), c.poster_id".format(
                 date=date)
@@ -949,11 +956,14 @@ class DataProcessor(object):
                     addr_ret_list.append(addr_ret_dict)
         str_json_addr = json.dumps(addr_ret_list)
         df_view_addr = pd.read_json(str_json_addr, orient='records', convert_dates=False, dtype=False)
+        df_order_addr = pd.DataFrame()
         if df_view_addr.empty is True:
             return
-        df_ret = pd.merge(left=df_view_addr, right=df_order_addr, how='left', on=['poster_id', 'product_id', 'date'])
+        if df_order_addr.empty is not True:
+            df_ret = pd.merge(left=df_view_addr, right=df_order_addr, how='left', on=['poster_id', 'product_id', 'date'])
+        else:
+            df_ret = df_view_addr
         df_ret = df_ret.fillna('')
-        print(df_ret)
         addr_ret_list = df_ret.to_dict(orient='records')
         # addr_ret_list = json.loads(str_ret_json)
         for kwargs in addr_ret_list:
@@ -961,8 +971,8 @@ class DataProcessor(object):
                                                             product_id=kwargs["product_id"],
                                                             poster_id=kwargs["poster_id"]).update({
 
-                ProductAddr.o_addr: kwargs["o_addr"],
-                ProductAddr.v_addr: kwargs["v_addr"]
+                ProductAddr.o_addr: kwargs.get("o_addr",""),
+                ProductAddr.v_addr: kwargs.get("v_addr","")
             })
             if num == 0:
                 orderAddrObj = ProductAddr(**kwargs)
@@ -1147,7 +1157,7 @@ if __name__ == '__main__':
     # processor.calc_website_user_summary(date=cur)
     # processor.calc_website_poster_summary()
     processor.init_calc_data()
-    # processor.calc_poster_page_view()
+    # processor.calc_product_addr()
     time2 = time.time()
     print(time2 - time1)
     processor.session.close()

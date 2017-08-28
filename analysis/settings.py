@@ -16,7 +16,7 @@
 DATABASES = {
     'alatting': {
         'engine': 'mysql',
-        'db': 'alatting',
+        'db': 'alatting_online',
         'user': 'root',
         'password': '123456',
         'host': '192.168.1.36',
