@@ -171,6 +171,7 @@ class DataProcessor(object):
             try:
                 self.session.commit()
             except Exception as e:
+                logging.error(e)
                 self.session.rollback()
 
     # 统计浏览器分布数据因子
@@ -214,6 +215,7 @@ class DataProcessor(object):
             try:
                 self.session.commit()
             except Exception as e:
+                logging.error(e)
                 self.session.rollback()
 
     # 统计操作系统信息
@@ -257,6 +259,7 @@ class DataProcessor(object):
             try:
                 self.session.commit()
             except Exception as e:
+                logging.error(e)
                 self.session.rollback()
 
     # 屏幕信息统计
@@ -395,6 +398,7 @@ class DataProcessor(object):
             try:
                 self.session.commit()
             except Exception as e:
+                logging.error(e)
                 self.session.rollback()
 
     # 页面停留时长
@@ -444,6 +448,7 @@ class DataProcessor(object):
             try:
                 self.session.commit()
             except Exception as e:
+                logging.error(e)
                 self.session.rollback()
 
     # 产品信息统计
@@ -498,6 +503,7 @@ class DataProcessor(object):
             try:
                 self.session.commit()
             except Exception as e:
+                logging.error(e)
                 self.session.rollback()
 
     # 优惠券统计信息
@@ -551,6 +557,7 @@ class DataProcessor(object):
             try:
                 self.session.commit()
             except Exception as e:
+                logging.error(e)
                 self.session.rollback()
 
     # 名片统计信息表
@@ -593,6 +600,7 @@ class DataProcessor(object):
             try:
                 self.session.commit()
             except Exception as e:
+                logging.error(e)
                 self.session.rollback()
 
     # 统计常规交互行为
@@ -659,16 +667,17 @@ class DataProcessor(object):
             try:
                 self.session.commit()
             except Exception as e:
+                logging.error(e)
                 self.session.rollback()
                 continue
 
     # 海报事件统计
     def calc_event_action_view(self, date=None):
         if date is None:
-            str_sql = "select DATE_FORMAT(created_at,'%Y-%m-%d') as 'date',IFNULL(poster_id,0) as 'poster_id',name,source,stype as 'type',COUNT(source) as 'nums' " \
+            str_sql = "select DATE_FORMAT(created_at,'%Y-%m-%d') as 'date',IFNULL(poster_id,0) as 'poster_id',name,source,stype as 'type',COUNT(source) as 'nums', COUNT(source) as 'n_num'" \
                       "from analysis_sourcelog GROUP BY DATE(created_at),poster_id,source,name;"
         else:
-            str_sql = "select DATE_FORMAT(created_at,'%Y-%m-%d') as 'date',IFNULL(poster_id,0) as 'poster_id',name,source,stype as 'type',COUNT(source) as 'nums' " \
+            str_sql = "select DATE_FORMAT(created_at,'%Y-%m-%d') as 'date',IFNULL(poster_id,0) as 'poster_id',name,source,stype as 'type',COUNT(source) as 'nums', COUNT(source) as 'n_num'" \
                       "from analysis_sourcelog WHERE DATE_FORMAT(created_at,'%Y-%m-%d') = '{date}' " \
                       "GROUP BY DATE(created_at),poster_id,source,name;".format(date=date)
         df = pd.read_sql(str_sql, self.__mysql_conn)
@@ -688,6 +697,7 @@ class DataProcessor(object):
             try:
                 self.session.commit()
             except Exception as e:
+                logging.error(e)
                 self.session.rollback()
                 continue
 
@@ -734,6 +744,7 @@ class DataProcessor(object):
             try:
                 self.session.commit()
             except Exception as e:
+                logging.error(e)
                 self.session.rollback()
 
     # 站点统计概况
@@ -835,6 +846,7 @@ class DataProcessor(object):
                 try:
                     self.session.commit()
                 except Exception as e:
+                    logging.error(e)
                     self.session.rollback()
                     continue
         else:
@@ -885,6 +897,7 @@ class DataProcessor(object):
             try:
                 self.session.commit()
             except Exception as e:
+                logging.error(e)
                 self.session.rollback()
 
     def calc_product_addr(self, date=None):
@@ -980,6 +993,7 @@ class DataProcessor(object):
             try:
                 self.session.commit()
             except Exception as e:
+                logging.error(e)
                 self.session.rollback()
                 print(e)
 
@@ -1034,6 +1048,7 @@ class DataProcessor(object):
                 try:
                     self.session.commit()
                 except Exception as e:
+                    logging.error(e)
                     self.session.rollback()
         else:
             # 新增的海报
