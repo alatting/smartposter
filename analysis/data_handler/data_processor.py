@@ -674,10 +674,10 @@ class DataProcessor(object):
     # 海报事件统计
     def calc_event_action_view(self, date=None):
         if date is None:
-            str_sql = "select DATE_FORMAT(created_at,'%Y-%m-%d') as 'date',IFNULL(poster_id,0) as 'poster_id',name,source,stype as 'type',COUNT(source) as 'nums', COUNT(source) as 'n_num'" \
+            str_sql = "select DATE_FORMAT(created_at,'%Y-%m-%d') as 'date',IFNULL(poster_id,0) as 'poster_id',name,source,stype as 'type',COUNT(source) as 'nums', COUNT(source) as 'u_num'" \
                       "from analysis_sourcelog GROUP BY DATE(created_at),poster_id,source,name;"
         else:
-            str_sql = "select DATE_FORMAT(created_at,'%Y-%m-%d') as 'date',IFNULL(poster_id,0) as 'poster_id',name,source,stype as 'type',COUNT(source) as 'nums', COUNT(source) as 'n_num'" \
+            str_sql = "select DATE_FORMAT(created_at,'%Y-%m-%d') as 'date',IFNULL(poster_id,0) as 'poster_id',name,source,stype as 'type',COUNT(source) as 'nums', COUNT(source) as 'u_num'" \
                       "from analysis_sourcelog WHERE DATE_FORMAT(created_at,'%Y-%m-%d') = '{date}' " \
                       "GROUP BY DATE(created_at),poster_id,source,name;".format(date=date)
         df = pd.read_sql(str_sql, self.__mysql_conn)
@@ -689,7 +689,8 @@ class DataProcessor(object):
             num = self.session.query(EventAction).filter_by(poster_id=kwargs["poster_id"], name=kwargs["name"],
                                                             source=kwargs["source"], type=kwargs["type"],
                                                             date=kwargs["date"]).update({
-                EventAction.nums: int(kwargs["nums"])
+                EventAction.nums: int(kwargs["nums"]),
+                EventAction.u_num: int(kwargs["u_num"])
             })
             if num == 0:
                 sourceViewObj = EventAction(**kwargs)
