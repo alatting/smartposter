@@ -17,6 +17,7 @@ from data.data_model import PageView, BrowserView, SystemView, ScreenView, Devic
 from settings import address_list, DATABASES
 import chardet
 
+
 class DataProcessor(object):
     def __init__(self, mysql_client):
         '''
@@ -32,7 +33,7 @@ class DataProcessor(object):
         )
         print(str_database)
         engine = create_engine(str_database,
-                               encoding='utf-8', echo=False)
+                               encoding='utf-8', echo=False, isolation_level="READ UNCOMMITTED")
         Session = sessionmaker(bind=engine)
         self.session = Session()
 
@@ -56,6 +57,7 @@ class DataProcessor(object):
                 date=date)
         # df = pd.read_sql(str_sql, self.__mysql_conn, index_col=['poster_id', 'date'])
         df_ip = pd.read_sql(str_sql, self.__mysql_conn)
+
         # 独立UV
         if date is None:
             str_sql = "SELECT posterid as 'poster_id', DATE_FORMAT(start_at,'%Y-%m-%d') as 'date',COUNT(DISTINCT IFNULL(creator_id,0)) as 'uv' " \
@@ -680,6 +682,7 @@ class DataProcessor(object):
             str_sql = "select DATE_FORMAT(created_at,'%Y-%m-%d') as 'date',IFNULL(poster_id,0) as 'poster_id',name,source,stype as 'type',COUNT(source) as 'nums', COUNT(source) as 'u_num'" \
                       "from analysis_sourcelog WHERE DATE_FORMAT(created_at,'%Y-%m-%d') = '{date}' " \
                       "GROUP BY DATE(created_at),poster_id,source,name;".format(date=date)
+        self.session.commit()
         df = pd.read_sql(str_sql, self.__mysql_conn)
         # ret_json = df.to_json(orient="records",force_ascii=False)
         # eventObjList = json.loads(ret_json)
@@ -937,7 +940,7 @@ class DataProcessor(object):
         str_json_addr = json.dumps(addr_ret_list)
         df_order_addr = pd.read_json(str_json_addr, orient='records', convert_dates=False, dtype=False)
 
-        #统计浏览地域分布
+        # 统计浏览地域分布
         if date is None:
             str_sql = "SELECT DATE_FORMAT(a.created_at, '%Y-%m-%d') as 'date', a.product_id, b.province, " \
                       "COUNT(province) as 'num', IFNULL(c.poster_id,0) as 'poster_id'  from analysis_productviewlogs a, alatting_website_ipaddress b," \
@@ -974,7 +977,8 @@ class DataProcessor(object):
         if df_view_addr.empty is True:
             return
         if df_order_addr.empty is not True:
-            df_ret = pd.merge(left=df_view_addr, right=df_order_addr, how='left', on=['poster_id', 'product_id', 'date'])
+            df_ret = pd.merge(left=df_view_addr, right=df_order_addr, how='left',
+                              on=['poster_id', 'product_id', 'date'])
         else:
             df_ret = df_view_addr
         df_ret = df_ret.fillna('')
@@ -985,8 +989,8 @@ class DataProcessor(object):
                                                             product_id=kwargs["product_id"],
                                                             poster_id=kwargs["poster_id"]).update({
 
-                ProductAddr.o_addr: kwargs.get("o_addr",""),
-                ProductAddr.v_addr: kwargs.get("v_addr","")
+                ProductAddr.o_addr: kwargs.get("o_addr", ""),
+                ProductAddr.v_addr: kwargs.get("v_addr", "")
             })
             if num == 0:
                 orderAddrObj = ProductAddr(**kwargs)
