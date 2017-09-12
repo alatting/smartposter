@@ -19,7 +19,7 @@ class MysqlClient(object):
 
         self.__conn = pymysql.connect(host=DATABASES["alatting"].get("host"), user=DATABASES["alatting"].get("user"),
                                       passwd=DATABASES["alatting"].get("password"), db=DATABASES["alatting"].get("db"),
-                                      charset="utf8")
+                                      charset="utf8", autocommit=True)
 
     def is_connected(self):
         """判断数据库连接是否断开"""
