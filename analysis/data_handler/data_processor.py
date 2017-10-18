@@ -288,7 +288,7 @@ class DataProcessor(object):
                 screen_df = df.ix[poster_id].ix[date]
                 for screen in ['big', 'mid', 'sml']:
                     try:
-                        num = screen_df[screen].num
+                        num = screen_df.ix[screen].num
                         screen_dict[screen] = int(num)
                     except KeyError:
                         screen_dict[screen] = 0
@@ -332,7 +332,7 @@ class DataProcessor(object):
                 screen_df = df.ix[poster_id].ix[date]
                 for screen in ['pc', 'pad', 'phone']:
                     try:
-                        num = screen_df[screen].num
+                        num = screen_df.ix[screen].num
                         screen_dict[screen] = int(num)
                     except KeyError:
                         screen_dict[screen] = 0
@@ -1105,55 +1105,106 @@ class DataProcessor(object):
 
     def init_calc_data(self, date=None):
         logging.info("1.function calc_poster_page_view begin execute ...")
-        self.calc_poster_page_view(date)
+        try:
+            self.calc_poster_page_view(date)
+        except Exception as e:
+            logging.error(e)
 
         logging.info("2.function calc_browser_view begin execute ...")
-        self.calc_browser_view(date)
+        try:
+            self.calc_browser_view(date)
+        except Exception as e:
+            logging.error(e)
 
         logging.info("3.function calc_system_view begin execute ...")
-        self.calc_system_view(date)
+        try:
+            self.calc_system_view(date)
+        except Exception as e:
+            logging.error(e)
 
         logging.info("4.function calc_screen_view begin execute ...")
-        self.calc_screen_view(date)
+        try:
+            self.calc_screen_view(date)
+        except Exception as e:
+            logging.error(e)
 
         logging.info("5.function calc_device_view begin execute ...")
-        self.calc_device_view(date)
+        try:
+            self.calc_device_view(date)
+        except Exception as e:
+            logging.error(e)
 
         logging.info("6.function calc_source_view begin execute ...")
-        self.calc_source_view(date)
+        try:
+            self.calc_source_view(date)
+        except Exception as e:
+            logging.error(e)
 
         logging.info("7.function calc_time_dist_view begin execute ...")
-        self.calc_time_dist_view(date)
+        try:
+            self.calc_time_dist_view(date)
+        except Exception as e:
+            logging.error(e)
 
         logging.info("8.function calc_poster_product_view begin execute ...")
-        self.calc_poster_product_view(date)
+        try:
+            self.calc_poster_product_view(date)
+        except Exception as e:
+            logging.error(e)
 
         logging.info("9.function calc_coupon_view begin execute ...")
-        self.calc_coupon_view(date)
+        try:
+            self.calc_coupon_view(date)
+        except Exception as e:
+            logging.error(e)
 
         logging.info("10.function calc_card_view begin execute ...")
-        self.calc_card_view(date)
+        try:
+            self.calc_card_view(date)
+        except Exception as e:
+            logging.error(e)
 
         logging.info("11.function calc_normal_action_view begin execute ...")
-        self.calc_normal_action_view(date)
+        try:
+            self.calc_normal_action_view(date)
+        except Exception as e:
+            logging.error(e)
 
         logging.info("12.function calc_event_action_view begin execute ...")
-        self.calc_event_action_view(date)
+        try:
+            self.calc_event_action_view(date)
+        except Exception as e:
+            logging.error(e)
 
         logging.info("13.function calc_share_action_view begin execute ...")
-        self.calc_share_action_view(date)
+        try:
+            self.calc_share_action_view(date)
+        except Exception as e:
+            logging.error(e)
 
         logging.info("14.function calc_website_summary begin execute ...")
-        self.calc_website_summary()
+        try:
+            self.calc_website_summary()
+        except Exception as  e:
+            logging.error(e)
 
         logging.info("15.function calc_website_user_summary begin execute ...")
-        self.calc_website_user_summary(date)
+        try:
+            self.calc_website_user_summary(date)
+        except Exception as e:
+            logging.error(e)
 
         logging.info("16.function calc_website_poster_summary begin execute ...")
-        self.calc_website_poster_summary(date)
+        try:
+            self.calc_website_poster_summary(date)
+        except Exception as e:
+            logging.error(e)
 
         logging.info("17.function calc_product_addr begin execute ...")
-        self.calc_product_addr(date)
+        try:
+            self.calc_product_addr(date)
+        except Exception as e:
+            logging.error(e)
 
 
 if __name__ == '__main__':
@@ -1161,6 +1212,7 @@ if __name__ == '__main__':
     time1 = time.time()
     cur = tools.get_current_date(format="%Y-%m-%d")
     processor = DataProcessor(mysql_client=mysqlClient.mysql_client)
+    processor.calc_device_view()
     # processor.calc_poster_page_view(None)
     # processor.calc_browser_view(cur)
     # processor.calc_system_view(cur)
@@ -1176,7 +1228,7 @@ if __name__ == '__main__':
     # processor.calc_time_dist_view(cur)
     # processor.calc_website_user_summary(date=cur)
     # processor.calc_website_poster_summary()
-    processor.init_calc_data()
+    # processor.init_calc_data()
     # processor.calc_product_addr()
     time2 = time.time()
     print(time2 - time1)
