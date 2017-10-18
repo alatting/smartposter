@@ -841,8 +841,8 @@ class DataProcessor(object):
                     WebsiteUserSummary.login: int(kwargs["login"]),
                     WebsiteUserSummary.pv: int(kwargs["pv"]),
                     WebsiteUserSummary.sign: int(kwargs["sign"]),
-                    WebsiteUserSummary.register_rate: kwargs["register_rate"],
-                    WebsiteUserSummary.live_rate: kwargs["live_rate"]
+                    WebsiteUserSummary.register_rate: float(kwargs["register_rate"]),
+                    WebsiteUserSummary.live_rate: float(kwargs["live_rate"])
                 })
                 if num == 0:
                     sourceViewObj = WebsiteUserSummary(**kwargs)
