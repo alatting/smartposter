@@ -6,6 +6,8 @@ date: 2017-08-24
 import time
 import logging
 from sqlalchemy.orm import sessionmaker
+
+from data.scene_data_model import SceneViewInfo
 from utils import tools
 import pandas as pd
 from data_handler.mysql_con import MysqlClient
@@ -1103,6 +1105,68 @@ class DataProcessor(object):
                 self.session.rollback()
                 logging.error(e)
 
+
+
+    # 统计新版海报浏览数据统计表PV,UV,IP,VV
+    def calc_scene_view_info(self, date=None):
+        # 独立PV
+        if date is None:
+            str_sql = "SELECT scene_id,FROM_UNIXTIME(action_time/1000,'%Y-%m-%d') as date,COUNT(*) as pv FROM analysis_scenelogs WHERE action_type = 0 "\
+                      "GROUP BY scene_id ,FROM_UNIXTIME(action_time/1000,'%Y-%m-%d') ORDER BY  FROM_UNIXTIME(action_time/1000,'%Y-%m-%d')"
+        else:
+            str_sql = "SELECT scene_id,FROM_UNIXTIME(action_time/1000,'%Y-%m-%d') as date,COUNT(*) as pv FROM analysis_scenelogs "\
+                      "WHERE action_type = 0 AND FROM_UNIXTIME(action_time/1000,'%Y-%m-%d') = '{date}' " \
+                      "GROUP BY scene_id ,FROM_UNIXTIME(action_time/1000,'%Y-%m-%d') ORDER BY  FROM_UNIXTIME(action_time/1000,'%Y-%m-%d')".format(date=date)
+        df_pv = pd.read_sql(str_sql, self.__mysql_conn)
+
+        # uv
+        if date is None:
+            str_sql = "SELECT scene_id,date,COUNT(DISTINCT visitor_ip) AS uv FROM "\
+                      "(SELECT DISTINCT scene_id,FROM_UNIXTIME(action_time/1000,'%Y-%m-%d') as date, visitor_ip,visitor_id FROM analysis_scenelogs WHERE action_type = 0 ) AS a "\
+                      "GROUP BY scene_id,date"
+        else:
+            str_sql = "SELECT scene_id,date,COUNT(DISTINCT visitor_ip) AS uv FROM " \
+                      "(SELECT DISTINCT scene_id,FROM_UNIXTIME(action_time/1000,'%Y-%m-%d') as date, visitor_ip,visitor_id FROM analysis_scenelogs "\
+                      "WHERE action_type = 0 AND FROM_UNIXTIME(action_time/1000,'%Y-%m-%d') = '{date}' ) AS a " \
+                      "GROUP BY scene_id,date".format(date=date)
+        df_uv = pd.read_sql(str_sql, self.__mysql_conn)
+        # share次数
+        if date is None:
+            str_sql = "SELECT scene_id,FROM_UNIXTIME(action_time/1000,'%Y-%m-%d') as date,COUNT(*) as share FROM analysis_scenelogs WHERE action_type = 2 " \
+                      "GROUP BY scene_id ,FROM_UNIXTIME(action_time/1000,'%Y-%m-%d') ORDER BY  FROM_UNIXTIME(action_time/1000,'%Y-%m-%d')"
+        else:
+            str_sql = "SELECT scene_id,FROM_UNIXTIME(action_time/1000,'%Y-%m-%d') as date,COUNT(*) as share FROM analysis_scenelogs " \
+                      "WHERE action_type = 2 AND FROM_UNIXTIME(action_time/1000,'%Y-%m-%d') = '{date}' " \
+                      "GROUP BY scene_id ,FROM_UNIXTIME(action_time/1000,'%Y-%m-%d') ORDER BY  FROM_UNIXTIME(action_time/1000,'%Y-%m-%d')".format(
+                date=date)
+        df_share = pd.read_sql(str_sql, self.__mysql_conn)
+
+
+        df = pd.merge(left=df_pv, right=df_uv, how='left', on=['scene_id', 'date'])
+        df = pd.merge(left=df, right=df_share, how='left', on=['scene_id', 'date'])
+        df = df.fillna(0)
+        print(df)
+        pd.set_option('precision', 0)
+        page_json = df.to_json(orient='records')
+        page_obj_list = json.loads(page_json)
+        for kwargs in page_obj_list:
+            num = self.session.query(SceneViewInfo).filter_by(scene_id=kwargs["scene_id"], date=kwargs["date"]).update(
+                {
+                    SceneViewInfo.uv: kwargs["uv"],
+                    SceneViewInfo.pv: kwargs["pv"],
+                    SceneViewInfo.share: kwargs["share"],
+                 })
+            if num == 0:
+                poster_view = SceneViewInfo(**kwargs)
+                self.session.add(poster_view)
+            try:
+                self.session.commit()
+            except Exception as e:
+                logging.error(e)
+                self.session.rollback()
+
+
+
     def init_calc_data(self, date=None):
         logging.info("1.function calc_poster_page_view begin execute ...")
         try:
@@ -1212,7 +1276,7 @@ if __name__ == '__main__':
     time1 = time.time()
     cur = tools.get_current_date(format="%Y-%m-%d")
     processor = DataProcessor(mysql_client=mysqlClient.mysql_client)
-    processor.calc_device_view()
+    processor.calc_scene_view_info()
     # processor.calc_poster_page_view(None)
     # processor.calc_browser_view(cur)
     # processor.calc_system_view(cur)

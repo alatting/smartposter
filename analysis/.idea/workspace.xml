@@ -13,199 +13,180 @@
     <SUITE FILE_PATH="coverage/analysis$pandas_test.coverage" NAME="pandas_test Coverage Results" MODIFIED="1502964885547" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_handl" />
     <SUITE FILE_PATH="coverage/analysis$pandas_test__1_.coverage" NAME="pandas_test (1) Coverage Results" MODIFIED="1503475071103" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_handler" />
     <SUITE FILE_PATH="coverage/analysis$DataElement__1_.coverage" NAME="DataElement (1) Coverage Results" MODIFIED="1503544015092" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_handler" />
-    <SUITE FILE_PATH="coverage/analysis$analysis_server.coverage" NAME="analysis_server Coverage Results" MODIFIED="1503546604552" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/analysis$analysis_server.coverage" NAME="analysis_server Coverage Results" MODIFIED="1505100812455" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/analysis$tree.coverage" NAME="tree Coverage Results" MODIFIED="1502942039649" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_handl" />
     <SUITE FILE_PATH="coverage/analysis$DataElement.coverage" NAME="DataElement Coverage Results" MODIFIED="1503310903570" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_handl" />
     <SUITE FILE_PATH="coverage/analysis$AnalysisServer.coverage" NAME="AnalysisServer Coverage Results" MODIFIED="1503479952499" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/analysis$data_processor.coverage" NAME="data_processor Coverage Results" MODIFIED="1503562714342" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_handler" />
+    <SUITE FILE_PATH="coverage/analysis$data_processor.coverage" NAME="data_processor Coverage Results" MODIFIED="1510889369598" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_handler" />
     <SUITE FILE_PATH="coverage/analysis$mysql_con.coverage" NAME="mysql_con Coverage Results" MODIFIED="1502181313926" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_handl" />
     <SUITE FILE_PATH="coverage/analysis$tools.coverage" NAME="tools Coverage Results" MODIFIED="1502854012989" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="analysis_server.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/analysis_server.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="7" column="40" lean-forward="false" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mysql_con.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data_handler/mysql_con.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="245">
+              <caret line="13" column="11" lean-forward="false" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="430">
+              <caret line="30" column="46" lean-forward="false" selection-start-line="30" selection-start-column="46" selection-end-line="30" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="data_processor.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/data_handler/data_processor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3703">
-              <caret line="1055" column="39" lean-forward="true" selection-start-line="1055" selection-start-column="39" selection-end-line="1055" selection-end-column="39" />
+            <state relative-caret-position="1207">
+              <caret line="1258" column="28" lean-forward="true" selection-start-line="1258" selection-start-column="28" selection-end-line="1258" selection-end-column="28" />
               <folding>
                 <element signature="e#53#64#0" expanded="true" />
-                <element signature="e#1576#10187#0" expanded="false" />
-                <element signature="e#30359#33706#0" expanded="false" />
-                <element signature="e#33765#36198#0" expanded="false" />
-                <element signature="e#36267#40295#0" expanded="false" />
-                <element signature="e#40361#41837#0" expanded="false" />
-                <marker date="1503562563147" expanded="true" signature="1631:1846" ph="SELECT poste... analysis_period" />
-                <marker date="1503562563147" expanded="true" signature="1887:2160" ph="SELECT poste... analysis_period" />
-                <marker date="1503562563147" expanded="true" signature="2406:2625" ph="SELECT poste... analysis_period" />
-                <marker date="1503562563147" expanded="true" signature="2666:2935" ph="SELECT poste... analysis_period" />
-                <marker date="1503562563147" expanded="true" signature="3184:3511" ph="select DATE_... analysis_period" />
-                <marker date="1503562563147" expanded="true" signature="3551:3957" ph="select DATE_... analysis_period" />
-                <marker date="1503562563147" expanded="true" signature="4186:4375" ph="SELECT DATE_... analysis_period" />
-                <marker date="1503562563147" expanded="true" signature="4414:4653" ph="SELECT DATE_... analysis_period" />
-                <marker date="1503562563147" expanded="true" signature="4900:5193" ph="select poste... analysis_period" />
-                <marker date="1503562563147" expanded="true" signature="5233:5601" ph="select poste... analysis_period" />
-                <marker date="1503562563147" expanded="true" signature="5861:6153" ph="select poste... analysis_period" />
-                <marker date="1503562563147" expanded="true" signature="6193:6560" ph="select poste... analysis_period" />
-                <marker date="1503562563147" expanded="true" signature="6821:7171" ph="select a.pos... analysis_period" />
-                <marker date="1503562563147" expanded="true" signature="7212:7585" ph="select a.pos... analysis_period" />
-                <marker date="1503562563147" expanded="true" signature="10293:10705" ph="select DATE_... analysis_period" />
-                <marker date="1503562563147" expanded="true" signature="10745:11235" ph="select DATE_... analysis_period" />
-                <marker date="1503562563147" expanded="true" signature="12934:13376" ph="select DATE_... analysis_period" />
-                <marker date="1503562563147" expanded="true" signature="13417:13937" ph="select DATE_... analysis_period" />
-                <marker date="1503562563147" expanded="true" signature="15486:16054" ph="select DATE_... analysis_period" />
-                <marker date="1503562563147" expanded="true" signature="16094:16712" ph="select DATE_... analysis_period" />
-                <marker date="1503562563147" expanded="true" signature="18198:18767" ph="select DATE_... analysis_period" />
-                <marker date="1503562563147" expanded="true" signature="18807:19426" ph="select DATE_... analysis_period" />
-                <marker date="1503562563147" expanded="true" signature="23912:24338" ph="SELECT poste... analysis_period" />
-                <marker date="1503562563147" expanded="true" signature="24378:24881" ph="SELECT poste... analysis_period" />
-                <marker date="1503562563147" expanded="true" signature="26717:26972" ph="SELECT DATE_... analysis_productviewlogs" />
-                <marker date="1503562563147" expanded="true" signature="27012:27346" ph="SELECT DATE_... analysis_productviewlogs" />
-                <marker date="1503562563147" expanded="true" signature="27604:27847" ph="SELECT DATE_... product_cart" />
-                <marker date="1503562563147" expanded="true" signature="27887:28209" ph="SELECT DATE_... product_cart" />
-                <marker date="1503562563147" expanded="true" signature="28463:28756" ph="select CAST(... product_productsnapshot" />
-                <marker date="1503562563147" expanded="true" signature="28796:29168" ph="select CAST(... product_productsnapshot" />
-                <marker date="1503562563147" expanded="true" signature="30440:30688" ph="select DATE_... analysis_couponviewlogs" />
-                <marker date="1503562563147" expanded="true" signature="30728:31056" ph="select DATE_... analysis_couponviewlogs" />
-                <marker date="1503562563147" expanded="true" signature="31206:31445" ph="SELECT DATE_... coupon_codes" />
-                <marker date="1503562563147" expanded="true" signature="31485:31803" ph="SELECT DATE_... coupon_codes" />
-                <marker date="1503562563147" expanded="true" signature="31952:32207" ph="SELECT DATE_... coupon_codes" />
-                <marker date="1503562563147" expanded="true" signature="32247:32580" ph="SELECT DATE_... coupon_codes" />
-                <marker date="1503562563147" expanded="true" signature="33825:34060" ph="select DATE_... analysis_cardviewlogs" />
-                <marker date="1503562563147" expanded="true" signature="34100:34414" ph="select DATE_... analysis_cardviewlogs" />
-                <marker date="1503562563147" expanded="true" signature="34564:34815" ph="SELECT DATE_... card_cardbookmark" />
-                <marker date="1503562563147" expanded="true" signature="34855:35186" ph="SELECT DATE_... card_cardbookmark" />
-                <marker date="1503562563147" expanded="true" signature="36321:36515" ph="SELECT poste... alatting_website_comment" />
-                <marker date="1503562563147" expanded="true" signature="36554:36828" ph="SELECT poste... alatting_website_comment" />
-                <marker date="1503562563147" expanded="true" signature="36971:37174" ph="select poste... alatting_website_posterfavorites" />
-                <marker date="1503562563147" expanded="true" signature="37214:37497" ph="select poste... alatting_website_posterfavorites" />
-                <marker date="1503562563147" expanded="true" signature="37642:37836" ph="SELECT poste... alatting_website_posterfun" />
-                <marker date="1503562563147" expanded="true" signature="37876:38149" ph="SELECT poste... alatting_website_posterfun" />
-                <marker date="1503562563147" expanded="true" signature="38291:38481" ph="select poste... alatting_website_rating" />
-                <marker date="1503562563147" expanded="true" signature="38520:38789" ph="select poste... alatting_website_rating" />
-                <marker date="1503562563147" expanded="true" signature="40401:40613" ph="select DATE_... analysis_sourcelog" />
-                <marker date="1503562563147" expanded="true" signature="40653:40944" ph="select DATE_... analysis_sourcelog" />
-                <marker date="1503562563147" expanded="true" signature="41945:42484" ph="SELECT poste... analysis_sharelist" />
-                <marker date="1503562563147" expanded="true" signature="42524:43115" ph="SELECT poste... analysis_sharelist" />
-                <marker date="1503562563147" expanded="true" signature="44857:44906" ph="SELECT COUNT... poster_systemskin" />
-                <marker date="1503562563147" expanded="true" signature="45065:45126" ph="SELECT COUNT... alatting_website_template" />
-                <marker date="1503562563147" expanded="true" signature="45291:45348" ph="SELECT COUNT... alatting_website_poster" />
-                <marker date="1503562563147" expanded="true" signature="45521:45628" ph="SELECT COUNT... alatting_website_poster" />
-                <marker date="1503562563147" expanded="true" signature="45821:45875" ph="SELECT COUNT... account_visitorfrequency" />
-                <marker date="1503562563147" expanded="true" signature="46020:46093" ph="SELECT COUNT... account_visitorfrequency" />
-                <marker date="1503562563147" expanded="true" signature="46238:46309" ph="SELECT COUNT... account_visitorfrequency" />
-                <marker date="1503562563147" expanded="true" signature="46454:46508" ph="SELECT COUNT... account_visitorfrequency" />
-                <marker date="1503562563147" expanded="true" signature="46655:46696" ph="SELECT COUNT... auth_user" />
-                <marker date="1503562563147" expanded="true" signature="47282:47426" ph="SELECT DATE_... account_visitorfrequency" />
-                <marker date="1503562563147" expanded="true" signature="47597:47787" ph="SELECT DATE_... account_userloginfrequency" />
-                <marker date="1503562563147" expanded="true" signature="47919:48109" ph="SELECT DATE_... auth_user" />
-                <marker date="1503562563147" expanded="true" signature="48492:48632" ph="SELECT DATE_... account_signinhistory" />
-                <marker date="1503562563147" expanded="true" signature="50458:50564" ph="SELECT COUNT... account_visitorfrequency" />
-                <marker date="1503562563147" expanded="true" signature="50740:50865" ph="SELECT COUNT... account_userloginfrequency" />
-                <marker date="1503562563147" expanded="true" signature="51056:51154" ph="SELECT COUNT... auth_user" />
-                <marker date="1503562563147" expanded="true" signature="51353:51394" ph="SELECT COUNT... auth_user" />
-                <marker date="1503562563147" expanded="true" signature="51534:51654" ph="SELECT COUNT... account_signinhistory" />
-                <marker date="1503562563147" expanded="true" signature="53312:53446" ph="SELECT DATE_... alatting_website_poster" />
-                <marker date="1503562563147" expanded="true" signature="53796:53990" ph="SELECT DATE_... alatting_website_poster" />
-                <marker date="1503562563147" expanded="true" signature="54128:54334" ph="SELECT DATE_... alatting_website_poster" />
-                <marker date="1503562563147" expanded="true" signature="54472:54662" ph="SELECT DATE_... alatting_website_poster" />
-                <marker date="1503562563147" expanded="true" signature="56208:56323" ph="SELECT COUNT... alatting_website_poster" />
-                <marker date="1503562563147" expanded="true" signature="56508:56574" ph="SELECT COUNT... alatting_website_poster" />
-                <marker date="1503562563147" expanded="true" signature="56742:56915" ph="SELECT COUNT... alatting_website_poster" />
-                <marker date="1503562563147" expanded="true" signature="57107:57293" ph="SELECT COUNT... alatting_website_poster" />
-                <marker date="1503562563147" expanded="true" signature="57483:57652" ph="SELECT COUNT... alatting_website_poster" />
+                <marker date="1510889368110" expanded="true" signature="1757:1972" ph="SELECT poste... analysis_period" />
+                <marker date="1510889368110" expanded="true" signature="2013:2286" ph="SELECT poste... analysis_period" />
+                <marker date="1510889368110" expanded="true" signature="2533:2752" ph="SELECT poste... analysis_period" />
+                <marker date="1510889368110" expanded="true" signature="2793:3062" ph="SELECT poste... analysis_period" />
+                <marker date="1510889368110" expanded="true" signature="3311:3638" ph="select DATE_... analysis_period" />
+                <marker date="1510889368110" expanded="true" signature="3678:4084" ph="select DATE_... analysis_period" />
+                <marker date="1510889368110" expanded="true" signature="4313:4502" ph="SELECT DATE_... analysis_period" />
+                <marker date="1510889368110" expanded="true" signature="4541:4780" ph="SELECT DATE_... analysis_period" />
+                <marker date="1510889368110" expanded="true" signature="5027:5320" ph="select poste... analysis_period" />
+                <marker date="1510889368110" expanded="true" signature="5360:5728" ph="select poste... analysis_period" />
+                <marker date="1510889368110" expanded="true" signature="5988:6280" ph="select poste... analysis_period" />
+                <marker date="1510889368110" expanded="true" signature="6320:6687" ph="select poste... analysis_period" />
+                <marker date="1510889368110" expanded="true" signature="6948:7298" ph="select a.pos... analysis_period" />
+                <marker date="1510889368110" expanded="true" signature="7339:7712" ph="select a.pos... analysis_period" />
+                <marker date="1510889368110" expanded="true" signature="10689:11111" ph="select DATE_... analysis_period" />
+                <marker date="1510889368110" expanded="true" signature="11151:11651" ph="select DATE_... analysis_period" />
+                <marker date="1510889368110" expanded="true" signature="13383:13835" ph="select DATE_... analysis_period" />
+                <marker date="1510889368110" expanded="true" signature="13876:14406" ph="select DATE_... analysis_period" />
+                <marker date="1510889368110" expanded="true" signature="15988:16566" ph="select DATE_... analysis_period" />
+                <marker date="1510889368110" expanded="true" signature="16606:17234" ph="select DATE_... analysis_period" />
+                <marker date="1510889368110" expanded="true" signature="18723:19302" ph="select DATE_... analysis_period" />
+                <marker date="1510889368110" expanded="true" signature="19342:19971" ph="select DATE_... analysis_period" />
+                <marker date="1510889368110" expanded="true" signature="24503:24939" ph="SELECT IFNUL... analysis_period" />
+                <marker date="1510889368110" expanded="true" signature="24979:25492" ph="SELECT IFNUL... analysis_period" />
+                <marker date="1510889368110" expanded="true" signature="27361:27641" ph="SELECT DATE_... analysis_productviewlogs" />
+                <marker date="1510889368110" expanded="true" signature="27681:28040" ph="SELECT DATE_... analysis_productviewlogs" />
+                <marker date="1510889368110" expanded="true" signature="28298:28566" ph="SELECT DATE_... product_cart" />
+                <marker date="1510889368110" expanded="true" signature="28606:28953" ph="SELECT DATE_... product_cart" />
+                <marker date="1510889368110" expanded="true" signature="29207:29510" ph="select CAST(... product_productsnapshot" />
+                <marker date="1510889368110" expanded="true" signature="29550:29932" ph="select CAST(... product_productsnapshot" />
+                <marker date="1510889368110" expanded="true" signature="31237:31510" ph="select DATE_... analysis_couponviewlogs" />
+                <marker date="1510889368110" expanded="true" signature="31550:31903" ph="select DATE_... analysis_couponviewlogs" />
+                <marker date="1510889368110" expanded="true" signature="32053:32317" ph="SELECT DATE_... coupon_codes" />
+                <marker date="1510889368110" expanded="true" signature="32357:32700" ph="SELECT DATE_... coupon_codes" />
+                <marker date="1510889368110" expanded="true" signature="32849:33129" ph="SELECT DATE_... coupon_codes" />
+                <marker date="1510889368110" expanded="true" signature="33169:33527" ph="SELECT DATE_... coupon_codes" />
+                <marker date="1510889368110" expanded="true" signature="34805:35065" ph="select DATE_... analysis_cardviewlogs" />
+                <marker date="1510889368110" expanded="true" signature="35105:35444" ph="select DATE_... analysis_cardviewlogs" />
+                <marker date="1510889368110" expanded="true" signature="35594:35870" ph="SELECT DATE_... card_cardbookmark" />
+                <marker date="1510889368110" expanded="true" signature="35910:36266" ph="SELECT DATE_... card_cardbookmark" />
+                <marker date="1510889368110" expanded="true" signature="37434:37653" ph="SELECT IFNUL... alatting_website_comment" />
+                <marker date="1510889368110" expanded="true" signature="37692:37991" ph="SELECT IFNUL... alatting_website_comment" />
+                <marker date="1510889368110" expanded="true" signature="38134:38362" ph="select IFNUL... alatting_website_posterfavorites" />
+                <marker date="1510889368110" expanded="true" signature="38402:38710" ph="select IFNUL... alatting_website_posterfavorites" />
+                <marker date="1510889368110" expanded="true" signature="38855:39074" ph="SELECT IFNUL... alatting_website_posterfun" />
+                <marker date="1510889368110" expanded="true" signature="39114:39412" ph="SELECT IFNUL... alatting_website_posterfun" />
+                <marker date="1510889368110" expanded="true" signature="39554:39769" ph="select IFNUL... alatting_website_rating" />
+                <marker date="1510889368110" expanded="true" signature="39808:40102" ph="select IFNUL... alatting_website_rating" />
+                <marker date="1510889368110" expanded="true" signature="43589:44138" ph="SELECT IFNUL... analysis_sharelist" />
+                <marker date="1510889368110" expanded="true" signature="44178:44779" ph="SELECT IFNUL... analysis_sharelist" />
+                <marker date="1510889368110" expanded="true" signature="46554:46603" ph="SELECT COUNT... poster_systemskin" />
+                <marker date="1510889368110" expanded="true" signature="46762:46823" ph="SELECT COUNT... alatting_website_template" />
+                <marker date="1510889368110" expanded="true" signature="46988:47045" ph="SELECT COUNT... alatting_website_poster" />
+                <marker date="1510889368110" expanded="true" signature="47218:47325" ph="SELECT COUNT... alatting_website_poster" />
+                <marker date="1510889368110" expanded="true" signature="47518:47572" ph="SELECT COUNT... account_visitorfrequency" />
+                <marker date="1510889368110" expanded="true" signature="47717:47790" ph="SELECT COUNT... account_visitorfrequency" />
+                <marker date="1510889368110" expanded="true" signature="47935:48006" ph="SELECT COUNT... account_visitorfrequency" />
+                <marker date="1510889368110" expanded="true" signature="48151:48205" ph="SELECT COUNT... account_visitorfrequency" />
+                <marker date="1510889368110" expanded="true" signature="48352:48393" ph="SELECT COUNT... auth_user" />
+                <marker date="1510889368110" expanded="true" signature="48979:49123" ph="SELECT DATE_... account_visitorfrequency" />
+                <marker date="1510889368110" expanded="true" signature="49294:49484" ph="SELECT DATE_... account_userloginfrequency" />
+                <marker date="1510889368110" expanded="true" signature="49616:49806" ph="SELECT DATE_... auth_user" />
+                <marker date="1510889368110" expanded="true" signature="50189:50329" ph="SELECT DATE_... account_signinhistory" />
+                <marker date="1510889368110" expanded="true" signature="52206:52312" ph="SELECT COUNT... account_visitorfrequency" />
+                <marker date="1510889368110" expanded="true" signature="52488:52613" ph="SELECT COUNT... account_userloginfrequency" />
+                <marker date="1510889368110" expanded="true" signature="52804:52902" ph="SELECT COUNT... auth_user" />
+                <marker date="1510889368110" expanded="true" signature="53101:53142" ph="SELECT COUNT... auth_user" />
+                <marker date="1510889368110" expanded="true" signature="53282:53402" ph="SELECT COUNT... account_signinhistory" />
+                <marker date="1510889368110" expanded="true" signature="54831:55265" ph="SELECT IFNUL... alatting_website_ipaddress" />
+                <marker date="1510889368110" expanded="true" signature="55306:55791" ph="SELECT IFNUL... alatting_website_ipaddress" />
+                <marker date="1510889368110" expanded="true" signature="57198:57634" ph="SELECT DATE_... analysis_productviewlogs" />
+                <marker date="1510889368110" expanded="true" signature="57673:58163" ph="SELECT DATE_... analysis_productviewlogs" />
+                <marker date="1510889368110" expanded="true" signature="61113:61247" ph="SELECT DATE_... alatting_website_poster" />
+                <marker date="1510889368110" expanded="true" signature="61597:61791" ph="SELECT DATE_... alatting_website_poster" />
+                <marker date="1510889368110" expanded="true" signature="61929:62135" ph="SELECT DATE_... alatting_website_poster" />
+                <marker date="1510889368110" expanded="true" signature="62273:62463" ph="SELECT DATE_... alatting_website_poster" />
+                <marker date="1510889368110" expanded="true" signature="64046:64161" ph="SELECT COUNT... alatting_website_poster" />
+                <marker date="1510889368110" expanded="true" signature="64346:64412" ph="SELECT COUNT... alatting_website_poster" />
+                <marker date="1510889368110" expanded="true" signature="64580:64753" ph="SELECT COUNT... alatting_website_poster" />
+                <marker date="1510889368110" expanded="true" signature="64945:65131" ph="SELECT COUNT... alatting_website_poster" />
+                <marker date="1510889368110" expanded="true" signature="65321:65490" ph="SELECT COUNT... alatting_website_poster" />
+                <marker date="1510889368110" expanded="true" signature="66993:67098" ph="SELECT scene... " />
+                <marker date="1510889368110" expanded="true" signature="66993:67261" ph="SELECT scene... " />
+                <marker date="1510889368110" expanded="true" signature="67300:67653" ph="SELECT scene... " />
+                <marker date="1510889368110" expanded="true" signature="67300:67654" ph="select DATE_... analysis_period" />
+                <marker date="1510889368110" expanded="true" signature="67791:68028" ph="SELECT scene... " />
+                <marker date="1510889368110" expanded="true" signature="67791:68077" ph="SELECT scene... " />
+                <marker date="1510889368110" expanded="true" signature="68116:68325" ph="SELECT scene... " />
+                <marker date="1510889368110" expanded="true" signature="68116:68488" ph="SELECT scene... " />
+                <marker date="1510889368110" expanded="true" signature="68630:68902" ph="SELECT scene... " />
+                <marker date="1510889368110" expanded="true" signature="68941:69298" ph="SELECT scene... " />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-        <entry file="file://D:/Python3.6/Lib/json/__init__.py">
+      <file leaf-file-name="tools.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/utils/tools.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="301" column="4" lean-forward="false" selection-start-line="301" selection-start-column="4" selection-end-line="301" selection-end-column="4" />
+            <state relative-caret-position="162">
+              <caret line="22" column="19" lean-forward="false" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="query.py" pinned="false" current-in-tab="false">
-        <entry file="file://D:/Python3.6/Lib/site-packages/sqlalchemy/orm/query.py">
+      <file leaf-file-name="data_model.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/data_model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="3344" column="0" lean-forward="false" selection-start-line="3344" selection-start-column="0" selection-end-line="3344" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="324">
+              <caret line="12" column="35" lean-forward="false" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
+              <folding>
+                <element signature="e#0#70#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="session.py" pinned="false" current-in-tab="false">
-        <entry file="file://D:/Python3.6/Lib/site-packages/sqlalchemy/orm/session.py">
+      <file leaf-file-name="scene_data_model.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/scene_data_model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30267">
-              <caret line="1138" column="0" lean-forward="false" selection-start-line="1138" selection-start-column="0" selection-end-line="1138" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="elements.py" pinned="false" current-in-tab="false">
-        <entry file="file://D:/Python3.6/Lib/site-packages/sqlalchemy/sql/elements.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="262" column="0" lean-forward="false" selection-start-line="262" selection-start-column="0" selection-end-line="262" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base.py" pinned="false" current-in-tab="false">
-        <entry file="file://D:/Python3.6/Lib/site-packages/sqlalchemy/engine/base.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="32076">
-              <caret line="1188" column="0" lean-forward="false" selection-start-line="1188" selection-start-column="0" selection-end-line="1188" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="compat.py" pinned="false" current-in-tab="false">
-        <entry file="file://D:/Python3.6/Lib/site-packages/sqlalchemy/util/compat.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4995">
-              <caret line="186" column="0" lean-forward="false" selection-start-line="186" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="default.py" pinned="false" current-in-tab="false">
-        <entry file="file://D:/Python3.6/Lib/site-packages/sqlalchemy/engine/default.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="12447">
-              <caret line="469" column="0" lean-forward="false" selection-start-line="469" selection-start-column="0" selection-end-line="469" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cursors.py" pinned="false" current-in-tab="false">
-        <entry file="file://D:/Python3.6/Lib/site-packages/pymysql/cursors.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3132">
-              <caret line="122" column="0" lean-forward="false" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="converters.py" pinned="false" current-in-tab="false">
-        <entry file="file://D:/Python3.6/Lib/site-packages/pymysql/converters.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1728">
-              <caret line="72" column="0" lean-forward="false" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="34">
+              <caret line="9" column="11" lean-forward="false" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
+              <folding>
+                <element signature="e#206#276#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -226,6 +207,14 @@
       <find>reset_index</find>
       <find>pd.read_json</find>
       <find>print</find>
+      <find>to_json</find>
+      <find>calc_event</find>
+      <find>to_dict</find>
+      <find>isolation_level</find>
+      <find>implicit_returning</find>
+      <find>iso</find>
+      <find>client_flag</find>
+      <find>logging</find>
     </findStrings>
     <replaceStrings>
       <replace>info</replace>
@@ -242,7 +231,6 @@
         <option value="$PROJECT_DIR$/data_handl/pandas_test.py" />
         <option value="$PROJECT_DIR$/data_handl/tree.py" />
         <option value="$PROJECT_DIR$/data_handl/DataElement.py" />
-        <option value="$PROJECT_DIR$/settings.py" />
         <option value="$PROJECT_DIR$/data_handler/pandas_test.py" />
         <option value="$PROJECT_DIR$/AnalysisServer.py" />
         <option value="$PROJECT_DIR$/data/data_model.py" />
@@ -250,8 +238,11 @@
         <option value="$PROJECT_DIR$/log.py" />
         <option value="$PROJECT_DIR$/utils/tools.py" />
         <option value="$PROJECT_DIR$/analysis_server.py" />
-        <option value="$PROJECT_DIR$/data_handler/mysql_con.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
+        <option value="$PROJECT_DIR$/log/analysis.log" />
+        <option value="$PROJECT_DIR$/data_handler/mysql_con.py" />
+        <option value="$PROJECT_DIR$/settings.py" />
+        <option value="$PROJECT_DIR$/data/scene_data_model.py" />
         <option value="$PROJECT_DIR$/data_handler/data_processor.py" />
       </list>
     </option>
@@ -283,7 +274,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -306,13 +297,41 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="utils" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="analysis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="analysis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="data_handler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="analysis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="analysis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -563,17 +582,17 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10660981" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11513859" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4147157" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38127092" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21181718" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39910814" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39910814" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -583,27 +602,6 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4147157" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21181718" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10554371" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39910814" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="processedProjectFiles" value="true" />
@@ -618,34 +616,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/data/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="1" column="30" lean-forward="false" selection-start-line="1" selection-start-column="30" selection-end-line="1" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://F:/alatting/analysis/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/Python3.6/Lib/site-packages/sqlalchemy/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/Python3.6/Lib/site-packages/sqlalchemy/sql/schema.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="1173" column="29" lean-forward="false" selection-start-line="1173" selection-start-column="29" selection-end-line="1173" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/Python3.6/Lib/site-packages/sqlalchemy/ext/declarative/api.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="781">
@@ -664,7 +634,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="364" column="0" lean-forward="false" selection-start-line="364" selection-start-column="0" selection-end-line="364" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -717,30 +686,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/Python3.6/Lib/site-packages/pandas/core/generic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="3080" column="0" lean-forward="false" selection-start-line="3080" selection-start-column="0" selection-end-line="3080" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/Python3.6/Lib/site-packages/pandas/core/indexes/datetimes.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="211">
           <caret line="2001" column="4" lean-forward="false" selection-start-line="2001" selection-start-column="4" selection-end-line="2001" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/Python3.6/Lib/site-packages/pandas/io/sql.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="37341">
-          <caret line="1403" column="0" lean-forward="false" selection-start-line="1403" selection-start-column="0" selection-end-line="1403" selection-end-column="0" />
-          <folding>
-            <marker date="1501568432561" expanded="true" signature="48422:48453" ph="INSERT INTO missing_value... " />
-            <marker date="1501568432561" expanded="true" signature="56683:56762" ph="SELECT name sqlite_master" />
-            <marker date="1501568432561" expanded="true" signature="57011:57022" ph="DROP TABLE m... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -816,14 +765,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/Python3.6/Lib/site-packages/pandas/core/frame.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="2330" column="0" lean-forward="false" selection-start-line="2330" selection-start-column="0" selection-end-line="2330" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data_handler/tree.py" />
     <entry file="file://$PROJECT_DIR$/data_handler/pandas_test.py" />
     <entry file="file://D:/Python3.6/Lib/site-packages/tornado/options.py">
@@ -833,80 +774,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/Python3.6/Lib/site-packages/sqlalchemy/engine/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-152">
-          <caret line="97" column="4" lean-forward="false" selection-start-line="97" selection-start-column="4" selection-end-line="97" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/log.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="18" column="9" lean-forward="true" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/tools.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding>
-            <element signature="e#68#98#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/data_model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="4" column="11" lean-forward="false" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#70#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/log/analysis.log" />
-    <entry file="file://$PROJECT_DIR$/analysis_server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1485">
-          <caret line="55" column="9" lean-forward="false" selection-start-line="55" selection-start-column="9" selection-end-line="55" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data_handler/mysql_con.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="945">
-          <caret line="35" column="12" lean-forward="true" selection-start-line="35" selection-start-column="12" selection-end-line="35" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/Python3.6/Lib/site-packages/sqlalchemy/orm/persistence.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="31617">
           <caret line="1178" column="0" lean-forward="false" selection-start-line="1178" selection-start-column="0" selection-end-line="1178" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/Python3.6/Lib/site-packages/sqlalchemy/orm/session.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30267">
-          <caret line="1138" column="0" lean-forward="false" selection-start-line="1138" selection-start-column="0" selection-end-line="1138" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -914,7 +785,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="32076">
           <caret line="1188" column="0" lean-forward="false" selection-start-line="1188" selection-start-column="0" selection-end-line="1188" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -922,7 +792,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4995">
           <caret line="186" column="0" lean-forward="false" selection-start-line="186" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -930,15 +799,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="12447">
           <caret line="469" column="0" lean-forward="false" selection-start-line="469" selection-start-column="0" selection-end-line="469" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/Python3.6/Lib/site-packages/pymysql/cursors.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3132">
-          <caret line="122" column="0" lean-forward="false" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -946,15 +806,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1728">
           <caret line="72" column="0" lean-forward="false" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/Python3.6/Lib/site-packages/sqlalchemy/orm/query.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="3344" column="0" lean-forward="false" selection-start-line="3344" selection-start-column="0" selection-end-line="3344" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -962,13 +813,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="27">
           <caret line="1" column="14" lean-forward="true" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://D:/Python3.6/Lib/json/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
+        <state relative-caret-position="8073">
           <caret line="301" column="4" lean-forward="false" selection-start-line="301" selection-start-column="4" selection-end-line="301" selection-end-column="4" />
           <folding />
         </state>
@@ -976,102 +826,255 @@
     </entry>
     <entry file="file://D:/Python3.6/Lib/site-packages/sqlalchemy/sql/elements.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
+        <state relative-caret-position="6723">
           <caret line="262" column="0" lean-forward="false" selection-start-line="262" selection-start-column="0" selection-end-line="262" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Python3.6/Lib/site-packages/pandas/core/generic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="1130" column="51" lean-forward="false" selection-start-line="1130" selection-start-column="51" selection-end-line="1130" selection-end-column="51" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/log.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="18" column="9" lean-forward="false" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Python3.6/Lib/site-packages/sqlalchemy/engine/strategies.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Python3.6/Lib/site-packages/pymysql/cursors.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="170" column="34" lean-forward="true" selection-start-line="170" selection-start-column="34" selection-end-line="170" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Python3.6/Lib/site-packages/sqlalchemy/orm/query.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="120" column="49" lean-forward="true" selection-start-line="120" selection-start-column="49" selection-end-line="120" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Python3.6/Lib/site-packages/pandas/core/frame.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-520">
+          <caret line="864" column="72" lean-forward="true" selection-start-line="864" selection-start-column="72" selection-end-line="864" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Python3.6/Lib/site-packages/sqlalchemy/engine/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="256" column="74" lean-forward="true" selection-start-line="256" selection-start-column="74" selection-end-line="256" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Python3.6/Lib/site-packages/sqlalchemy/orm/session.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-370">
+          <caret line="2803" column="21" lean-forward="false" selection-start-line="2803" selection-start-column="17" selection-end-line="2803" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Python3.6/Lib/site-packages/pandas/io/sql.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="334" column="4" lean-forward="false" selection-start-line="334" selection-start-column="4" selection-end-line="334" selection-end-column="4" />
+          <folding>
+            <marker date="1501568432561" expanded="true" signature="48422:48453" ph="INSERT INTO missing_value... " />
+            <marker date="1501568432561" expanded="true" signature="56683:56762" ph="SELECT name sqlite_master" />
+            <marker date="1501568432561" expanded="true" signature="57011:57022" ph="DROP TABLE m... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/log/analysis.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-22408">
+          <caret line="15" column="13" lean-forward="true" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Python3.6/Lib/site-packages/pymysql/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="439">
+          <caret line="89" column="19" lean-forward="false" selection-start-line="89" selection-start-column="19" selection-end-line="89" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Python3.6/Lib/site-packages/pymysql/connections.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="439">
+          <caret line="530" column="37" lean-forward="false" selection-start-line="530" selection-start-column="29" selection-end-line="530" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_handler/mysql_con.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="13" column="11" lean-forward="false" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="30" column="46" lean-forward="false" selection-start-line="30" selection-start-column="46" selection-end-line="30" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/scene_data_model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="9" column="11" lean-forward="false" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
+          <folding>
+            <element signature="e#206#276#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/tools.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="22" column="19" lean-forward="false" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analysis_server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="7" column="40" lean-forward="false" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/data_model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="12" column="35" lean-forward="false" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#70#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data_handler/data_processor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3703">
-          <caret line="1055" column="39" lean-forward="true" selection-start-line="1055" selection-start-column="39" selection-end-line="1055" selection-end-column="39" />
+        <state relative-caret-position="1207">
+          <caret line="1258" column="28" lean-forward="true" selection-start-line="1258" selection-start-column="28" selection-end-line="1258" selection-end-column="28" />
           <folding>
             <element signature="e#53#64#0" expanded="true" />
-            <element signature="e#1576#10187#0" expanded="false" />
-            <element signature="e#30359#33706#0" expanded="false" />
-            <element signature="e#33765#36198#0" expanded="false" />
-            <element signature="e#36267#40295#0" expanded="false" />
-            <element signature="e#40361#41837#0" expanded="false" />
-            <marker date="1503562563147" expanded="true" signature="1631:1846" ph="SELECT poste... analysis_period" />
-            <marker date="1503562563147" expanded="true" signature="1887:2160" ph="SELECT poste... analysis_period" />
-            <marker date="1503562563147" expanded="true" signature="2406:2625" ph="SELECT poste... analysis_period" />
-            <marker date="1503562563147" expanded="true" signature="2666:2935" ph="SELECT poste... analysis_period" />
-            <marker date="1503562563147" expanded="true" signature="3184:3511" ph="select DATE_... analysis_period" />
-            <marker date="1503562563147" expanded="true" signature="3551:3957" ph="select DATE_... analysis_period" />
-            <marker date="1503562563147" expanded="true" signature="4186:4375" ph="SELECT DATE_... analysis_period" />
-            <marker date="1503562563147" expanded="true" signature="4414:4653" ph="SELECT DATE_... analysis_period" />
-            <marker date="1503562563147" expanded="true" signature="4900:5193" ph="select poste... analysis_period" />
-            <marker date="1503562563147" expanded="true" signature="5233:5601" ph="select poste... analysis_period" />
-            <marker date="1503562563147" expanded="true" signature="5861:6153" ph="select poste... analysis_period" />
-            <marker date="1503562563147" expanded="true" signature="6193:6560" ph="select poste... analysis_period" />
-            <marker date="1503562563147" expanded="true" signature="6821:7171" ph="select a.pos... analysis_period" />
-            <marker date="1503562563147" expanded="true" signature="7212:7585" ph="select a.pos... analysis_period" />
-            <marker date="1503562563147" expanded="true" signature="10293:10705" ph="select DATE_... analysis_period" />
-            <marker date="1503562563147" expanded="true" signature="10745:11235" ph="select DATE_... analysis_period" />
-            <marker date="1503562563147" expanded="true" signature="12934:13376" ph="select DATE_... analysis_period" />
-            <marker date="1503562563147" expanded="true" signature="13417:13937" ph="select DATE_... analysis_period" />
-            <marker date="1503562563147" expanded="true" signature="15486:16054" ph="select DATE_... analysis_period" />
-            <marker date="1503562563147" expanded="true" signature="16094:16712" ph="select DATE_... analysis_period" />
-            <marker date="1503562563147" expanded="true" signature="18198:18767" ph="select DATE_... analysis_period" />
-            <marker date="1503562563147" expanded="true" signature="18807:19426" ph="select DATE_... analysis_period" />
-            <marker date="1503562563147" expanded="true" signature="23912:24338" ph="SELECT poste... analysis_period" />
-            <marker date="1503562563147" expanded="true" signature="24378:24881" ph="SELECT poste... analysis_period" />
-            <marker date="1503562563147" expanded="true" signature="26717:26972" ph="SELECT DATE_... analysis_productviewlogs" />
-            <marker date="1503562563147" expanded="true" signature="27012:27346" ph="SELECT DATE_... analysis_productviewlogs" />
-            <marker date="1503562563147" expanded="true" signature="27604:27847" ph="SELECT DATE_... product_cart" />
-            <marker date="1503562563147" expanded="true" signature="27887:28209" ph="SELECT DATE_... product_cart" />
-            <marker date="1503562563147" expanded="true" signature="28463:28756" ph="select CAST(... product_productsnapshot" />
-            <marker date="1503562563147" expanded="true" signature="28796:29168" ph="select CAST(... product_productsnapshot" />
-            <marker date="1503562563147" expanded="true" signature="30440:30688" ph="select DATE_... analysis_couponviewlogs" />
-            <marker date="1503562563147" expanded="true" signature="30728:31056" ph="select DATE_... analysis_couponviewlogs" />
-            <marker date="1503562563147" expanded="true" signature="31206:31445" ph="SELECT DATE_... coupon_codes" />
-            <marker date="1503562563147" expanded="true" signature="31485:31803" ph="SELECT DATE_... coupon_codes" />
-            <marker date="1503562563147" expanded="true" signature="31952:32207" ph="SELECT DATE_... coupon_codes" />
-            <marker date="1503562563147" expanded="true" signature="32247:32580" ph="SELECT DATE_... coupon_codes" />
-            <marker date="1503562563147" expanded="true" signature="33825:34060" ph="select DATE_... analysis_cardviewlogs" />
-            <marker date="1503562563147" expanded="true" signature="34100:34414" ph="select DATE_... analysis_cardviewlogs" />
-            <marker date="1503562563147" expanded="true" signature="34564:34815" ph="SELECT DATE_... card_cardbookmark" />
-            <marker date="1503562563147" expanded="true" signature="34855:35186" ph="SELECT DATE_... card_cardbookmark" />
-            <marker date="1503562563147" expanded="true" signature="36321:36515" ph="SELECT poste... alatting_website_comment" />
-            <marker date="1503562563147" expanded="true" signature="36554:36828" ph="SELECT poste... alatting_website_comment" />
-            <marker date="1503562563147" expanded="true" signature="36971:37174" ph="select poste... alatting_website_posterfavorites" />
-            <marker date="1503562563147" expanded="true" signature="37214:37497" ph="select poste... alatting_website_posterfavorites" />
-            <marker date="1503562563147" expanded="true" signature="37642:37836" ph="SELECT poste... alatting_website_posterfun" />
-            <marker date="1503562563147" expanded="true" signature="37876:38149" ph="SELECT poste... alatting_website_posterfun" />
-            <marker date="1503562563147" expanded="true" signature="38291:38481" ph="select poste... alatting_website_rating" />
-            <marker date="1503562563147" expanded="true" signature="38520:38789" ph="select poste... alatting_website_rating" />
-            <marker date="1503562563147" expanded="true" signature="40401:40613" ph="select DATE_... analysis_sourcelog" />
-            <marker date="1503562563147" expanded="true" signature="40653:40944" ph="select DATE_... analysis_sourcelog" />
-            <marker date="1503562563147" expanded="true" signature="41945:42484" ph="SELECT poste... analysis_sharelist" />
-            <marker date="1503562563147" expanded="true" signature="42524:43115" ph="SELECT poste... analysis_sharelist" />
-            <marker date="1503562563147" expanded="true" signature="44857:44906" ph="SELECT COUNT... poster_systemskin" />
-            <marker date="1503562563147" expanded="true" signature="45065:45126" ph="SELECT COUNT... alatting_website_template" />
-            <marker date="1503562563147" expanded="true" signature="45291:45348" ph="SELECT COUNT... alatting_website_poster" />
-            <marker date="1503562563147" expanded="true" signature="45521:45628" ph="SELECT COUNT... alatting_website_poster" />
-            <marker date="1503562563147" expanded="true" signature="45821:45875" ph="SELECT COUNT... account_visitorfrequency" />
-            <marker date="1503562563147" expanded="true" signature="46020:46093" ph="SELECT COUNT... account_visitorfrequency" />
-            <marker date="1503562563147" expanded="true" signature="46238:46309" ph="SELECT COUNT... account_visitorfrequency" />
-            <marker date="1503562563147" expanded="true" signature="46454:46508" ph="SELECT COUNT... account_visitorfrequency" />
-            <marker date="1503562563147" expanded="true" signature="46655:46696" ph="SELECT COUNT... auth_user" />
-            <marker date="1503562563147" expanded="true" signature="47282:47426" ph="SELECT DATE_... account_visitorfrequency" />
-            <marker date="1503562563147" expanded="true" signature="47597:47787" ph="SELECT DATE_... account_userloginfrequency" />
-            <marker date="1503562563147" expanded="true" signature="47919:48109" ph="SELECT DATE_... auth_user" />
-            <marker date="1503562563147" expanded="true" signature="48492:48632" ph="SELECT DATE_... account_signinhistory" />
-            <marker date="1503562563147" expanded="true" signature="50458:50564" ph="SELECT COUNT... account_visitorfrequency" />
-            <marker date="1503562563147" expanded="true" signature="50740:50865" ph="SELECT COUNT... account_userloginfrequency" />
-            <marker date="1503562563147" expanded="true" signature="51056:51154" ph="SELECT COUNT... auth_user" />
-            <marker date="1503562563147" expanded="true" signature="51353:51394" ph="SELECT COUNT... auth_user" />
-            <marker date="1503562563147" expanded="true" signature="51534:51654" ph="SELECT COUNT... account_signinhistory" />
-            <marker date="1503562563147" expanded="true" signature="53312:53446" ph="SELECT DATE_... alatting_website_poster" />
-            <marker date="1503562563147" expanded="true" signature="53796:53990" ph="SELECT DATE_... alatting_website_poster" />
-            <marker date="1503562563147" expanded="true" signature="54128:54334" ph="SELECT DATE_... alatting_website_poster" />
-            <marker date="1503562563147" expanded="true" signature="54472:54662" ph="SELECT DATE_... alatting_website_poster" />
-            <marker date="1503562563147" expanded="true" signature="56208:56323" ph="SELECT COUNT... alatting_website_poster" />
-            <marker date="1503562563147" expanded="true" signature="56508:56574" ph="SELECT COUNT... alatting_website_poster" />
-            <marker date="1503562563147" expanded="true" signature="56742:56915" ph="SELECT COUNT... alatting_website_poster" />
-            <marker date="1503562563147" expanded="true" signature="57107:57293" ph="SELECT COUNT... alatting_website_poster" />
-            <marker date="1503562563147" expanded="true" signature="57483:57652" ph="SELECT COUNT... alatting_website_poster" />
+            <marker date="1510889368110" expanded="true" signature="1757:1972" ph="SELECT poste... analysis_period" />
+            <marker date="1510889368110" expanded="true" signature="2013:2286" ph="SELECT poste... analysis_period" />
+            <marker date="1510889368110" expanded="true" signature="2533:2752" ph="SELECT poste... analysis_period" />
+            <marker date="1510889368110" expanded="true" signature="2793:3062" ph="SELECT poste... analysis_period" />
+            <marker date="1510889368110" expanded="true" signature="3311:3638" ph="select DATE_... analysis_period" />
+            <marker date="1510889368110" expanded="true" signature="3678:4084" ph="select DATE_... analysis_period" />
+            <marker date="1510889368110" expanded="true" signature="4313:4502" ph="SELECT DATE_... analysis_period" />
+            <marker date="1510889368110" expanded="true" signature="4541:4780" ph="SELECT DATE_... analysis_period" />
+            <marker date="1510889368110" expanded="true" signature="5027:5320" ph="select poste... analysis_period" />
+            <marker date="1510889368110" expanded="true" signature="5360:5728" ph="select poste... analysis_period" />
+            <marker date="1510889368110" expanded="true" signature="5988:6280" ph="select poste... analysis_period" />
+            <marker date="1510889368110" expanded="true" signature="6320:6687" ph="select poste... analysis_period" />
+            <marker date="1510889368110" expanded="true" signature="6948:7298" ph="select a.pos... analysis_period" />
+            <marker date="1510889368110" expanded="true" signature="7339:7712" ph="select a.pos... analysis_period" />
+            <marker date="1510889368110" expanded="true" signature="10689:11111" ph="select DATE_... analysis_period" />
+            <marker date="1510889368110" expanded="true" signature="11151:11651" ph="select DATE_... analysis_period" />
+            <marker date="1510889368110" expanded="true" signature="13383:13835" ph="select DATE_... analysis_period" />
+            <marker date="1510889368110" expanded="true" signature="13876:14406" ph="select DATE_... analysis_period" />
+            <marker date="1510889368110" expanded="true" signature="15988:16566" ph="select DATE_... analysis_period" />
+            <marker date="1510889368110" expanded="true" signature="16606:17234" ph="select DATE_... analysis_period" />
+            <marker date="1510889368110" expanded="true" signature="18723:19302" ph="select DATE_... analysis_period" />
+            <marker date="1510889368110" expanded="true" signature="19342:19971" ph="select DATE_... analysis_period" />
+            <marker date="1510889368110" expanded="true" signature="24503:24939" ph="SELECT IFNUL... analysis_period" />
+            <marker date="1510889368110" expanded="true" signature="24979:25492" ph="SELECT IFNUL... analysis_period" />
+            <marker date="1510889368110" expanded="true" signature="27361:27641" ph="SELECT DATE_... analysis_productviewlogs" />
+            <marker date="1510889368110" expanded="true" signature="27681:28040" ph="SELECT DATE_... analysis_productviewlogs" />
+            <marker date="1510889368110" expanded="true" signature="28298:28566" ph="SELECT DATE_... product_cart" />
+            <marker date="1510889368110" expanded="true" signature="28606:28953" ph="SELECT DATE_... product_cart" />
+            <marker date="1510889368110" expanded="true" signature="29207:29510" ph="select CAST(... product_productsnapshot" />
+            <marker date="1510889368110" expanded="true" signature="29550:29932" ph="select CAST(... product_productsnapshot" />
+            <marker date="1510889368110" expanded="true" signature="31237:31510" ph="select DATE_... analysis_couponviewlogs" />
+            <marker date="1510889368110" expanded="true" signature="31550:31903" ph="select DATE_... analysis_couponviewlogs" />
+            <marker date="1510889368110" expanded="true" signature="32053:32317" ph="SELECT DATE_... coupon_codes" />
+            <marker date="1510889368110" expanded="true" signature="32357:32700" ph="SELECT DATE_... coupon_codes" />
+            <marker date="1510889368110" expanded="true" signature="32849:33129" ph="SELECT DATE_... coupon_codes" />
+            <marker date="1510889368110" expanded="true" signature="33169:33527" ph="SELECT DATE_... coupon_codes" />
+            <marker date="1510889368110" expanded="true" signature="34805:35065" ph="select DATE_... analysis_cardviewlogs" />
+            <marker date="1510889368110" expanded="true" signature="35105:35444" ph="select DATE_... analysis_cardviewlogs" />
+            <marker date="1510889368110" expanded="true" signature="35594:35870" ph="SELECT DATE_... card_cardbookmark" />
+            <marker date="1510889368110" expanded="true" signature="35910:36266" ph="SELECT DATE_... card_cardbookmark" />
+            <marker date="1510889368110" expanded="true" signature="37434:37653" ph="SELECT IFNUL... alatting_website_comment" />
+            <marker date="1510889368110" expanded="true" signature="37692:37991" ph="SELECT IFNUL... alatting_website_comment" />
+            <marker date="1510889368110" expanded="true" signature="38134:38362" ph="select IFNUL... alatting_website_posterfavorites" />
+            <marker date="1510889368110" expanded="true" signature="38402:38710" ph="select IFNUL... alatting_website_posterfavorites" />
+            <marker date="1510889368110" expanded="true" signature="38855:39074" ph="SELECT IFNUL... alatting_website_posterfun" />
+            <marker date="1510889368110" expanded="true" signature="39114:39412" ph="SELECT IFNUL... alatting_website_posterfun" />
+            <marker date="1510889368110" expanded="true" signature="39554:39769" ph="select IFNUL... alatting_website_rating" />
+            <marker date="1510889368110" expanded="true" signature="39808:40102" ph="select IFNUL... alatting_website_rating" />
+            <marker date="1510889368110" expanded="true" signature="43589:44138" ph="SELECT IFNUL... analysis_sharelist" />
+            <marker date="1510889368110" expanded="true" signature="44178:44779" ph="SELECT IFNUL... analysis_sharelist" />
+            <marker date="1510889368110" expanded="true" signature="46554:46603" ph="SELECT COUNT... poster_systemskin" />
+            <marker date="1510889368110" expanded="true" signature="46762:46823" ph="SELECT COUNT... alatting_website_template" />
+            <marker date="1510889368110" expanded="true" signature="46988:47045" ph="SELECT COUNT... alatting_website_poster" />
+            <marker date="1510889368110" expanded="true" signature="47218:47325" ph="SELECT COUNT... alatting_website_poster" />
+            <marker date="1510889368110" expanded="true" signature="47518:47572" ph="SELECT COUNT... account_visitorfrequency" />
+            <marker date="1510889368110" expanded="true" signature="47717:47790" ph="SELECT COUNT... account_visitorfrequency" />
+            <marker date="1510889368110" expanded="true" signature="47935:48006" ph="SELECT COUNT... account_visitorfrequency" />
+            <marker date="1510889368110" expanded="true" signature="48151:48205" ph="SELECT COUNT... account_visitorfrequency" />
+            <marker date="1510889368110" expanded="true" signature="48352:48393" ph="SELECT COUNT... auth_user" />
+            <marker date="1510889368110" expanded="true" signature="48979:49123" ph="SELECT DATE_... account_visitorfrequency" />
+            <marker date="1510889368110" expanded="true" signature="49294:49484" ph="SELECT DATE_... account_userloginfrequency" />
+            <marker date="1510889368110" expanded="true" signature="49616:49806" ph="SELECT DATE_... auth_user" />
+            <marker date="1510889368110" expanded="true" signature="50189:50329" ph="SELECT DATE_... account_signinhistory" />
+            <marker date="1510889368110" expanded="true" signature="52206:52312" ph="SELECT COUNT... account_visitorfrequency" />
+            <marker date="1510889368110" expanded="true" signature="52488:52613" ph="SELECT COUNT... account_userloginfrequency" />
+            <marker date="1510889368110" expanded="true" signature="52804:52902" ph="SELECT COUNT... auth_user" />
+            <marker date="1510889368110" expanded="true" signature="53101:53142" ph="SELECT COUNT... auth_user" />
+            <marker date="1510889368110" expanded="true" signature="53282:53402" ph="SELECT COUNT... account_signinhistory" />
+            <marker date="1510889368110" expanded="true" signature="54831:55265" ph="SELECT IFNUL... alatting_website_ipaddress" />
+            <marker date="1510889368110" expanded="true" signature="55306:55791" ph="SELECT IFNUL... alatting_website_ipaddress" />
+            <marker date="1510889368110" expanded="true" signature="57198:57634" ph="SELECT DATE_... analysis_productviewlogs" />
+            <marker date="1510889368110" expanded="true" signature="57673:58163" ph="SELECT DATE_... analysis_productviewlogs" />
+            <marker date="1510889368110" expanded="true" signature="61113:61247" ph="SELECT DATE_... alatting_website_poster" />
+            <marker date="1510889368110" expanded="true" signature="61597:61791" ph="SELECT DATE_... alatting_website_poster" />
+            <marker date="1510889368110" expanded="true" signature="61929:62135" ph="SELECT DATE_... alatting_website_poster" />
+            <marker date="1510889368110" expanded="true" signature="62273:62463" ph="SELECT DATE_... alatting_website_poster" />
+            <marker date="1510889368110" expanded="true" signature="64046:64161" ph="SELECT COUNT... alatting_website_poster" />
+            <marker date="1510889368110" expanded="true" signature="64346:64412" ph="SELECT COUNT... alatting_website_poster" />
+            <marker date="1510889368110" expanded="true" signature="64580:64753" ph="SELECT COUNT... alatting_website_poster" />
+            <marker date="1510889368110" expanded="true" signature="64945:65131" ph="SELECT COUNT... alatting_website_poster" />
+            <marker date="1510889368110" expanded="true" signature="65321:65490" ph="SELECT COUNT... alatting_website_poster" />
+            <marker date="1510889368110" expanded="true" signature="66993:67098" ph="SELECT scene... " />
+            <marker date="1510889368110" expanded="true" signature="66993:67261" ph="SELECT scene... " />
+            <marker date="1510889368110" expanded="true" signature="67300:67653" ph="SELECT scene... " />
+            <marker date="1510889368110" expanded="true" signature="67300:67654" ph="select DATE_... analysis_period" />
+            <marker date="1510889368110" expanded="true" signature="67791:68028" ph="SELECT scene... " />
+            <marker date="1510889368110" expanded="true" signature="67791:68077" ph="SELECT scene... " />
+            <marker date="1510889368110" expanded="true" signature="68116:68325" ph="SELECT scene... " />
+            <marker date="1510889368110" expanded="true" signature="68116:68488" ph="SELECT scene... " />
+            <marker date="1510889368110" expanded="true" signature="68630:68902" ph="SELECT scene... " />
+            <marker date="1510889368110" expanded="true" signature="68941:69298" ph="SELECT scene... " />
           </folding>
         </state>
       </provider>

@@ -16,10 +16,10 @@
 DATABASES = {
     'alatting': {
         'engine': 'mysql',
-        'db': 'alatting_online',
+        'db': 'alatting',
         'user': 'root',
-        'password': '123456',
-        'host': '192.168.1.36',
+        'password': 'mysqlroot',
+        'host': '192.168.222.128',
         'port': 3306
     },
 }
